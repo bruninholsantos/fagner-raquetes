@@ -165,11 +165,22 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 
 /* vitrine horizontal */
 .showcase{position:relative}
-.sc-sticky{position:sticky;top:calc(env(safe-area-inset-top,0px) + 66px);overflow:hidden;padding-block:40px}
-.sc-track{display:flex;gap:20px;will-change:transform;padding-left:max(16px,calc((100vw - 1200px)/2 + 16px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.rk{flex:0 0 clamp(250px,26vw,320px);border-radius:24px;padding:22px;background:var(--graphite-800);border:1px solid var(--line);display:grid;gap:14px;position:relative;overflow:hidden}
-.rk .art{aspect-ratio:3/4;border-radius:16px;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,rgba(238,243,242,.07),transparent 65%),var(--graphite-700);overflow:hidden}
-.rk .art svg{width:78%;height:auto;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.sc-sticky{position:relative;padding-block:clamp(60px,8vw,100px)}
+.sc-track{display:flex;gap:18px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;cursor:grab;padding-block:6px 10px;
+  padding-left:max(16px,env(safe-area-inset-left,0px),calc((100vw - 1200px)/2 + 16px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  scroll-padding-left:max(16px,calc((100vw - 1200px)/2 + 16px))}
+.sc-track::-webkit-scrollbar{display:none}
+.sc-track.dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
+.sc-track.dragging *{pointer-events:none}
+.rk{flex:0 0 clamp(230px,22vw,270px);scroll-snap-align:start;border-radius:22px;padding:18px;background:var(--graphite-800);border:1px solid var(--line);display:grid;gap:12px;align-content:start;position:relative;overflow:hidden;user-select:none}
+.rk .art{height:clamp(200px,24vw,250px);border-radius:14px;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,rgba(238,243,242,.07),transparent 65%),var(--graphite-700);overflow:hidden}
+.rk .art svg{height:92%;width:auto;max-width:100%;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.sc-nav{display:flex;gap:8px}
+.sc-nav button{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--graphite-800);color:var(--string);display:grid;place-items:center;cursor:pointer;transition:border-color .2s,background .2s,opacity .2s}
+.sc-nav button:hover:not(:disabled){border-color:var(--teal);background:var(--graphite-700)}
+.sc-nav button:disabled{opacity:.35;cursor:default}
+.sc-nav svg{width:20px;height:20px}
+.sc-headrow{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:30px}
 .rk:hover .art svg{transform:rotate(-8deg) scale(1.05)}
 .rk h3{font-size:1.15rem}
 .rk .meta{display:flex;justify-content:space-between;align-items:center;gap:10px}
@@ -181,7 +192,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .sc-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:24px;flex-wrap:wrap}
 .sc-foot .bar{flex:1;min-width:120px;height:2px;background:var(--line);border-radius:2px;overflow:hidden}
 .sc-foot .bar i{display:block;height:100%;width:0;background:var(--teal)}
-@media (max-width:760px){.sc-sticky{position:relative;top:0}.sc-track{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;transform:none!important;padding-bottom:10px}.rk{scroll-snap-align:start;flex-basis:78vw}.showcase{height:auto!important}}
+@media (max-width:760px){.rk{flex-basis:74vw}.sc-nav{display:none}}
 
 /* quem sou eu */
 .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,6vw,80px);align-items:center}
@@ -447,14 +458,20 @@ footer .f{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;ali
   <section class="showcase" id="vitrine">
     <div class="sc-sticky">
       <div class="wrap">
-        <div class="head rv" style="margin-bottom:30px">
-          <span class="eyebrow">Na parede da loja</span>
-          <h2>Uma raquete para cada jogo.</h2>
+        <div class="sc-headrow">
+          <div class="head rv" style="margin-bottom:0">
+            <span class="eyebrow">Na parede da loja</span>
+            <h2>Uma raquete para cada jogo.</h2>
+          </div>
+          <div class="sc-nav">
+            <button type="button" id="scPrev" aria-label="Raquetes anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <button type="button" id="scNext" aria-label="Próximas raquetes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
         </div>
       </div>
-      <div class="sc-track" id="scTrack"></div>
+      <div class="sc-track" id="scTrack" tabindex="0" aria-label="Vitrine de raquetes, role para os lados"></div>
       <div class="wrap">
-        <div class="sc-foot"><span class="mono" style="font-size:.78rem;color:var(--muted)">Estoque muda toda semana. Confirme modelo, peso e preço no WhatsApp.</span><div class="bar"><i id="scBar"></i></div></div>
+        <div class="sc-foot"><span class="mono" style="font-size:.78rem;color:var(--muted)">Arraste para o lado ou use as setas. Estoque muda toda semana; confirme modelo, peso e preço no WhatsApp.</span><div class="bar"><i id="scBar"></i></div></div>
       </div>
     </div>
   </section>
@@ -671,12 +688,20 @@ function racketSVG(m){let st='';for(let i=1;i<=10;i++){const x=-60+i*120/11;st+=
 const track=document.getElementById('scTrack');
 track.innerHTML=models.map(m=>`<article class="rk"><div class="art">${racketSVG(m)}</div><div class="meta"><h3>${m.n}</h3><span class="pill">${m.tag}</span></div><p>${m.d}</p></article>`).join('')+
  `<a class="rk cta" href="https://wa.me/5511947106033?text=Ol%C3%A1%2C%20quero%20ver%20as%20raquetes%20dispon%C3%ADveis" target="_blank" rel="noopener"><h3>Ver o estoque de hoje</h3><p>Novas, seminovas e modelos para troca. Fotos e preços no WhatsApp.</p><span class="btn btn-dark" style="justify-self:start;background:var(--graphite-900);color:var(--string)"><svg><use href="#wa"/></svg>Pedir fotos</span></a>`;
-const sc=document.getElementById('vitrine'),sticky=sc.querySelector('.sc-sticky'),bar=document.getElementById('scBar');
-let dist=0;
-function layoutSC(){if(innerWidth<=760){sc.style.height='';track.style.transform='';return}dist=Math.max(0,track.scrollWidth-innerWidth);sc.style.height=(sticky.offsetHeight+dist)+'px';scrollSC()}
-function scrollSC(){if(innerWidth<=760){bar.style.width=(track.scrollLeft/Math.max(1,track.scrollWidth-track.clientWidth)*100)+'%';return}const r=sc.getBoundingClientRect(),top=parseFloat(getComputedStyle(sticky).top)||0,p=Math.min(1,Math.max(0,(top-r.top)/Math.max(1,dist)));track.style.transform=`translateX(${-p*dist}px)`;bar.style.width=(p*100)+'%'}
-addEventListener('scroll',scrollSC,{passive:true});track.addEventListener('scroll',scrollSC,{passive:true});addEventListener('resize',layoutSC);
-document.fonts&&document.fonts.ready.then(layoutSC);layoutSC();
+/* carrossel lateral opcional: a rolagem da página nunca é capturada */
+const bar=document.getElementById('scBar'),prev=document.getElementById('scPrev'),next=document.getElementById('scNext');
+function updSC(){const max=track.scrollWidth-track.clientWidth,p=max>0?track.scrollLeft/max:0;bar.style.width=Math.max(8,p*100)+'%';prev.disabled=track.scrollLeft<4;next.disabled=track.scrollLeft>max-4}
+function step(dir){const card=track.querySelector('.rk');const w=card?card.getBoundingClientRect().width+18:300;track.scrollBy({left:dir*w*Math.max(1,Math.floor(track.clientWidth/w)-1),behavior:reduce?'auto':'smooth'})}
+prev.addEventListener('click',()=>step(-1));next.addEventListener('click',()=>step(1));
+track.addEventListener('scroll',updSC,{passive:true});addEventListener('resize',updSC);
+track.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();step(1)}if(e.key==='ArrowLeft'){e.preventDefault();step(-1)}});
+/* arrastar com o mouse (no toque o navegador já rola sozinho) */
+let drag=null;
+track.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse'||e.button!==0)return;drag={x:e.clientX,left:track.scrollLeft,moved:false}});
+addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x;if(Math.abs(dx)>5&&!drag.moved){drag.moved=true;track.classList.add('dragging')}if(drag.moved)track.scrollLeft=drag.left-dx});
+addEventListener('pointerup',()=>{if(!drag)return;const moved=drag.moved;drag=null;if(moved){track.classList.remove('dragging');suppress=true;setTimeout(()=>suppress=false,0)}});
+let suppress=false;track.addEventListener('click',ev=>{if(suppress){ev.preventDefault();ev.stopPropagation()}},true);
+updSC();
 
 /* ---------- copiar telefone ---------- */
 const cb=document.getElementById('copyBtn');
