@@ -127,7 +127,13 @@ section.block{padding-block:clamp(70px,10vw,130px)}
 .stringing{background:var(--graphite-800);border-block:1px solid var(--line)}
 .str-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,90px);align-items:start}
 .str-visual{position:sticky;top:calc(env(safe-area-inset-top,0px) + 100px);display:grid;place-items:center}
-.str-visual svg{width:min(100%,440px);height:auto;overflow:visible}
+.str-visual svg{height:min(56vh,480px);width:auto;max-width:100%;overflow:visible}
+.mysetup{margin-top:16px;width:min(100%,340px);padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--graphite-900);display:grid;gap:6px;font-size:.88rem}
+.mysetup .k{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+.mysetup div{display:flex;justify-content:space-between;gap:12px}
+.mysetup div span:first-child{color:var(--muted)}
+.mysetup div span:last-child{text-align:right;font-weight:600}
+.mysetup .empty{color:var(--muted);font-weight:400!important}
 .str-visual .badge{margin-top:10px;font-family:var(--f-mono);font-size:.8rem;color:var(--muted);text-align:center}
 .str-visual .badge b{color:var(--teal);font-size:1.6rem;display:block;font-family:var(--f-display);font-variation-settings:"wdth" 125}
 #mainsG line,#crossG line{stroke:var(--string);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:400;stroke-dashoffset:400;transition:stroke-dashoffset .9s cubic-bezier(.6,.1,.2,1)}
@@ -139,12 +145,27 @@ section.block{padding-block:clamp(70px,10vw,130px)}
 .step.active{opacity:1}
 .step .num{font-family:var(--f-mono);color:var(--teal);font-size:.85rem;letter-spacing:.12em}
 .step p{color:var(--muted)}
-.step ul{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:10px}
-.step li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--graphite-900)}
-.step li b{font-family:var(--f-mono);font-size:.78rem;color:var(--teal);font-weight:600;white-space:nowrap}
-.step li span{color:var(--muted);font-size:.95rem}
+.opts{margin-top:6px;display:grid;gap:10px}
+.opt{display:grid;grid-template-columns:22px auto 1fr;gap:12px;align-items:baseline;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:var(--graphite-900);color:inherit;font:inherit;text-align:left;cursor:pointer;transition:border-color .2s,background .2s}
+.opt:hover{border-color:rgba(47,196,196,.5)}
+.opt::before{content:"";width:16px;height:16px;border-radius:50%;border:2px solid var(--muted);align-self:center;transition:all .2s}
+.opt[aria-pressed="true"]{border-color:var(--teal);background:rgba(47,196,196,.1)}
+.opt[aria-pressed="true"]::before{border-color:var(--teal);background:var(--teal);box-shadow:inset 0 0 0 3px var(--graphite-900)}
+.opt b{font-family:var(--f-mono);font-size:.78rem;color:var(--teal);font-weight:600;white-space:nowrap}
+.opt span{color:var(--muted);font-size:.95rem}
+.qlabel{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{font-size:.85rem;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--graphite-900)}
+.chip{font:inherit;font-size:.88rem;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--graphite-900);color:var(--string);cursor:pointer;transition:all .2s}
+.chip:hover{border-color:rgba(47,196,196,.5)}
+.chip[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--graphite-900);font-weight:600}
+.summary{padding:18px;border-radius:var(--r);background:var(--graphite-900);border:1px solid rgba(47,196,196,.35);display:grid;gap:10px}
+.summary dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:.95rem}
+.summary dt{color:var(--muted)}
+.summary dd{margin:0;font-weight:600;text-align:right;min-width:0;overflow-wrap:anywhere}
+.summary dd.empty{color:var(--muted);font-weight:400}
+.field{display:grid;gap:6px}
+.field input{font:inherit;color:var(--string);background:var(--graphite-800);border:1px solid var(--line);border-radius:10px;padding:11px 13px;width:100%}
+.field input:focus{outline:none;border-color:var(--teal)}
 /* calculadora */
 .tension{margin-top:8px;padding:22px;border-radius:var(--r);background:var(--graphite-900);border:1px solid rgba(47,196,196,.35);display:grid;gap:16px}
 .tension .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
@@ -161,7 +182,7 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .meter .bar{height:8px;border-radius:8px;background:var(--graphite-700);overflow:hidden}
 .meter .bar i{display:block;height:100%;background:var(--teal);border-radius:8px;transition:width .25s}
 .tension .note{font-size:.92rem;color:var(--string)}
-@media (max-width:860px){.str-grid{grid-template-columns:1fr}.str-visual{position:relative;top:0}.str-visual svg{width:min(70%,300px)}.step{opacity:1}}
+@media (max-width:860px){.str-grid{grid-template-columns:1fr}.str-visual{position:relative;top:0}.str-visual svg{height:min(40vh,300px)}.step{opacity:1}}
 
 /* vitrine horizontal */
 .showcase{position:relative}
@@ -409,24 +430,46 @@ footer .f{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;ali
             <path d="M-17 246l34-12M-17 266l34-12M-17 286l34-12M-17 306l34-12M-17 326l34-12" stroke="var(--graphite-700)" stroke-width="5"/>
           </svg>
           <div class="badge"><b id="strBadge">Etapa 1</b><span id="strBadgeT">Avaliação do jogo</span></div>
+          <div class="mysetup" aria-live="polite">
+            <span class="k">Sua montagem</span>
+            <div><span>Nível</span><span id="sumLevel" class="empty">a escolher</span></div>
+            <div><span>Corda</span><span id="sumString" class="empty">a escolher</span></div>
+            <div><span>Tensão</span><span id="sumTension">52 lbs</span></div>
+          </div>
         </div>
         <div class="steps">
           <div class="step active" data-step="1">
             <span class="num">ETAPA 1 DE 4</span>
             <h3>Avaliação do jogo</h3>
-            <p>Antes de qualquer corda, uma conversa: nível, frequência de jogo, golpes que você mais usa e se sente dor no braço ou no cotovelo.</p>
-            <div class="chips"><span class="chip">Jogo de fundo</span><span class="chip">Saque e voleio</span><span class="chip">Muito spin</span><span class="chip">Cotovelo sensível</span><span class="chip">Juvenil</span></div>
+            <p>Antes de qualquer corda, uma conversa: nível, golpes que você mais usa e se sente dor no braço ou no cotovelo. Marque o que combina com você.</p>
+            <span class="qlabel">Seu nível</span>
+            <div class="chips" data-group="level" data-single>
+              <button type="button" class="chip" aria-pressed="false">Iniciante</button>
+              <button type="button" class="chip" aria-pressed="false">Intermediário</button>
+              <button type="button" class="chip" aria-pressed="false">Avançado</button>
+              <button type="button" class="chip" aria-pressed="false">Competidor</button>
+            </div>
+            <span class="qlabel">Seu jogo (pode marcar vários)</span>
+            <div class="chips" data-group="style">
+              <button type="button" class="chip" aria-pressed="false">Jogo de fundo</button>
+              <button type="button" class="chip" aria-pressed="false">Saque e voleio</button>
+              <button type="button" class="chip" aria-pressed="false">Muito spin</button>
+              <button type="button" class="chip" aria-pressed="false">Bato forte</button>
+              <button type="button" class="chip" aria-pressed="false">Cotovelo sensível</button>
+              <button type="button" class="chip" aria-pressed="false">Juvenil</button>
+            </div>
           </div>
           <div class="step" data-step="2">
             <span class="num">ETAPA 2 DE 4</span>
             <h3>Escolha da corda</h3>
-            <p>Cada tipo de corda entrega uma sensação diferente. As verticais (mains) começam a ganhar forma.</p>
-            <ul>
-              <li><b>Poliéster</b><span>Controle e spin. Para quem bate forte do fundo.</span></li>
-              <li><b>Multifilamento</b><span>Conforto e potência. Gentil com braço e cotovelo.</span></li>
-              <li><b>Nylon</b><span>Equilíbrio e bom custo-benefício para quem está começando.</span></li>
-              <li><b>Híbrido</b><span>Poliéster nas verticais e multi nas horizontais: controle com conforto.</span></li>
-            </ul>
+            <p>Cada tipo de corda entrega uma sensação diferente. Escolha uma, ou deixe o Fagner indicar.</p>
+            <div class="opts" data-group="string" data-single>
+              <button type="button" class="opt" aria-pressed="false" data-value="Poliéster"><b>Poliéster</b><span>Controle e spin. Para quem bate forte do fundo.</span></button>
+              <button type="button" class="opt" aria-pressed="false" data-value="Multifilamento"><b>Multifilamento</b><span>Conforto e potência. Gentil com braço e cotovelo.</span></button>
+              <button type="button" class="opt" aria-pressed="false" data-value="Nylon"><b>Nylon</b><span>Equilíbrio e bom custo-benefício para quem está começando.</span></button>
+              <button type="button" class="opt" aria-pressed="false" data-value="Híbrido"><b>Híbrido</b><span>Poliéster nas verticais e multi nas horizontais: controle com conforto.</span></button>
+              <button type="button" class="opt" aria-pressed="false" data-value="Quero indicação"><b>Não sei</b><span>Quero que o Fagner indique a melhor corda para o meu jogo.</span></button>
+            </div>
           </div>
           <div class="step" data-step="3">
             <span class="num">ETAPA 3 DE 4</span>
@@ -447,8 +490,21 @@ footer .f{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;ali
           <div class="step" data-step="4">
             <span class="num">ETAPA 4 DE 4</span>
             <h3>Montagem profissional</h3>
-            <p>Horizontais (crosses) entrelaçadas uma a uma, tensão conferida e nós firmes. Encordoador com formação profissional pelo curso ERSA.</p>
-            <a class="btn btn-teal mag" style="justify-self:start" href="https://wa.me/5511947106033?text=Ol%C3%A1%2C%20quero%20encordoar%20minha%20raquete" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Agendar encordoamento</a>
+            <p>Horizontais (crosses) entrelaçadas uma a uma, tensão conferida e nós firmes. Encordoador com formação profissional pelo curso ERSA. Confira suas escolhas e envie.</p>
+            <div class="summary">
+              <dl>
+                <dt>Nível</dt><dd id="rLevel" class="empty">não informado</dd>
+                <dt>Seu jogo</dt><dd id="rStyle" class="empty">não informado</dd>
+                <dt>Corda</dt><dd id="rString" class="empty">não informada</dd>
+                <dt>Tensão</dt><dd id="rTension">52 lbs · 23,6 kg</dd>
+              </dl>
+              <div class="field">
+                <label for="racketModel" class="qlabel" style="margin:0">Modelo da sua raquete (opcional)</label>
+                <input id="racketModel" type="text" placeholder="Ex.: a que estou usando hoje" autocomplete="off">
+              </div>
+            </div>
+            <a class="btn btn-teal mag" id="waSend" style="justify-self:start" href="https://wa.me/5511947106033" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Enviar minha montagem no WhatsApp</a>
+            <small style="color:var(--muted)">Abre o WhatsApp com a mensagem pronta. É só conferir e enviar.</small>
           </div>
         </div>
       </div>
@@ -672,7 +728,33 @@ const rng=document.getElementById('tensionRange'),lbsEl=document.getElementById(
 function upd(){const v=+rng.value,p=(v-40)/24;rng.style.setProperty('--p',(p*100)+'%');lbsEl.textContent=v;kgEl.textContent=(v*0.45359).toFixed(1).replace('.',',');
   const pow=Math.round(90-p*70),ctl=Math.round(20+p*75);document.getElementById('mPow').style.width=pow+'%';document.getElementById('mCtl').style.width=ctl+'%';document.getElementById('pPow').textContent=pow+'%';document.getElementById('pCtl').textContent=ctl+'%';
   note.textContent=v<=46?'Tensão baixa: mais saída de bola, mais conforto e sweet spot maior. Boa para braço sensível e para poliéster, que perde tensão mais rápido.':v<=56?'Faixa equilibrada: boa saída de bola com controle. Ponto de partida comum para jogadores intermediários.':'Tensão alta: mais controle e precisão, menos potência. Pede golpe completo e exige mais do braço.'}
-rng.addEventListener('input',upd);upd();
+rng.addEventListener('input',()=>{upd();refreshSetup()});upd();
+
+/* ---------- montador: escolhas -> WhatsApp ---------- */
+const choice={level:[],style:[],string:[]};
+document.querySelectorAll('[data-group]').forEach(g=>{
+  const key=g.dataset.group,single=g.hasAttribute('data-single');
+  g.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||!g.contains(b))return;
+    const on=b.getAttribute('aria-pressed')!=='true';
+    if(single)g.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed','false'));
+    b.setAttribute('aria-pressed',on?'true':'false');
+    choice[key]=[...g.querySelectorAll('button[aria-pressed="true"]')].map(x=>x.dataset.value||x.textContent.trim());
+    refreshSetup()});
+});
+const modelIn=document.getElementById('racketModel');modelIn.addEventListener('input',refreshSetup);
+function setTxt(id,val,fallback){const el=document.getElementById(id);el.textContent=val||fallback;el.classList.toggle('empty',!val)}
+function refreshSetup(){
+  const v=+rng.value,kg=(v*0.45359).toFixed(1).replace('.',','),lv=choice.level.join(''),st=choice.style.join(', '),sg=choice.string.join('');
+  setTxt('sumLevel',lv,'a escolher');setTxt('sumString',sg,'a escolher');document.getElementById('sumTension').textContent=v+' lbs';
+  setTxt('rLevel',lv,'não informado');setTxt('rStyle',st,'não informado');setTxt('rString',sg,'não informada');document.getElementById('rTension').textContent=`${v} lbs · ${kg} kg`;
+  const lines=['Olá, Fagner! Montei meu encordoamento pelo site:','',
+    `• Nível: ${lv||'não informado'}`,`• Meu jogo: ${st||'não informado'}`,`• Corda: ${sg||'quero indicação'}`,`• Tensão: ${v} lbs (${kg} kg)`];
+  const m=modelIn.value.trim();if(m)lines.push(`• Raquete: ${m}`);
+  lines.push('','Pode me passar valor e prazo?');
+  document.getElementById('waSend').href='https://wa.me/5511947106033?text='+encodeURIComponent(lines.join('\n'));
+}
+refreshSetup();
+document.querySelectorAll('.step').forEach(s=>{s.addEventListener('pointerdown',()=>setStep(+s.dataset.step));s.addEventListener('focusin',()=>setStep(+s.dataset.step))});
 
 /* ---------- vitrine ---------- */
 const models=[
