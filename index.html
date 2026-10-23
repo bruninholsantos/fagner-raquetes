@@ -247,8 +247,19 @@ dialog.sheet::backdrop{background:rgba(14,14,20,.72);backdrop-filter:blur(6px);-
 dialog.sheet[open]{animation:pop .45s cubic-bezier(.2,.9,.25,1.1)}
 @keyframes pop{from{opacity:0;transform:translateY(30px) scale(.96)}to{opacity:1;transform:none}}
 .sheet-grid{display:grid;grid-template-columns:1fr 1fr}
-.sheet-ph{position:relative;background:var(--graphite-700);min-height:100%}
-.sheet-ph img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1}
+.sheet-ph{position:relative;background:var(--graphite-900);display:grid;align-content:start}
+.sheet-ph .main{position:relative;aspect-ratio:1;overflow:hidden}
+.sheet-ph .main img{width:100%;height:100%;object-fit:contain;display:block;transition:opacity .25s}
+.sheet-ph .main img.fading{opacity:0}
+.thumbs{display:flex;gap:8px;padding:10px}
+.thumbs button{flex:1;aspect-ratio:1;max-width:84px;padding:0;border-radius:10px;overflow:hidden;border:2px solid transparent;background:var(--graphite-700);cursor:pointer;opacity:.6;transition:opacity .2s,border-color .2s}
+.thumbs button:hover{opacity:1}
+.thumbs button[aria-current="true"]{border-color:var(--teal);opacity:1}
+.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.gal-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:rgba(29,29,38,.75);color:var(--string);cursor:pointer;font-size:1.1rem;display:grid;place-items:center}
+.gal-arrow:hover{border-color:var(--teal)}
+.gal-arrow.l{left:10px}.gal-arrow.r{right:10px}
+.pr .count{position:absolute;top:10px;right:10px;z-index:1;font-family:var(--f-mono);font-size:.68rem;padding:5px 8px;border-radius:7px;background:rgba(29,29,38,.8);color:var(--string)}
 .sheet-body{padding:clamp(20px,3.5vw,36px);display:grid;gap:18px;align-content:start;min-width:0}
 .sheet-x{position:absolute;top:12px;right:12px;z-index:2;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:rgba(29,29,38,.8);color:var(--string);cursor:pointer;display:grid;place-items:center;font-size:1.4rem;line-height:1}
 .sheet-x:hover{border-color:var(--teal)}
@@ -271,7 +282,7 @@ dialog.sheet[open]{animation:pop .45s cubic-bezier(.2,.9,.25,1.1)}
 .sheet-nav{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:16px}
 .sheet-nav button{font:600 .85rem var(--f-body);color:var(--muted);background:none;border:0;cursor:pointer;padding:6px 0}
 .sheet-nav button:hover{color:var(--string)}
-@media (max-width:760px){.sheet-grid{grid-template-columns:1fr}.sheet-ph img{aspect-ratio:4/3}}
+@media (max-width:760px){.sheet-grid{grid-template-columns:1fr}.sheet-ph .main{aspect-ratio:auto;height:min(78vw,420px)}}
 
 /* quem sou eu */
 .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,6vw,80px);align-items:center}
@@ -612,7 +623,15 @@ footer .f{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;ali
   <dialog class="sheet" id="sheet" aria-labelledby="shTitle">
     <button type="button" class="sheet-x" id="shClose" aria-label="Fechar">×</button>
     <div class="sheet-grid">
-      <div class="sheet-ph"><span class="status" id="shStatus">Disponível</span><img id="shImg" src="" alt=""></div>
+      <div class="sheet-ph">
+        <div class="main">
+          <span class="status" id="shStatus">Disponível</span>
+          <img id="shImg" src="" alt="">
+          <button type="button" class="gal-arrow l" id="galPrev" aria-label="Foto anterior">‹</button>
+          <button type="button" class="gal-arrow r" id="galNext" aria-label="Próxima foto">›</button>
+        </div>
+        <div class="thumbs" id="shThumbs"></div>
+      </div>
       <div class="sheet-body">
         <div style="display:grid;gap:6px">
           <span class="eyebrow" id="shBrand"></span>
@@ -908,7 +927,7 @@ const brl=v=>'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2});
 const sqcm=h=>Math.round(h*6.4516);
 const grid=document.getElementById('stockGrid');
 grid.innerHTML=STOCK.map((r,i)=>`<button type="button" class="pr${r.sold?' is-sold':''}" data-i="${i}" data-sold="${r.sold}" aria-label="Ver especificações: par ${r.brand} ${r.model}">
-  <div class="ph"><span class="status${r.sold?' sold':''}">${r.sold?'Vendido':'Disponível'}</span><img src="img/estoque/raquete-${i+1}.jpg" alt="Par de raquetes ${r.brand} ${r.model} na parede da loja" loading="lazy" width="640" height="640"></div>
+  <div class="ph"><span class="status${r.sold?' sold':''}">${r.sold?'Vendido':'Disponível'}</span><span class="count">3 fotos</span><img src="img/estoque/raquete-${i+1}-1.jpg" alt="Par de raquetes ${r.brand} ${r.model} na loja" loading="lazy" width="1080" height="1080"></div>
   <div class="info"><span class="brandn">${r.brand} · par</span><h3>${r.model}</h3>
   <div class="mini"><span>${r.head} pol²</span><span>${r.weight} g</span><span>${r.pattern}</span><span>${r.grip}</span></div>
   <div class="price">${brl(r.price)}<small>o par</small></div></div></button>`).join('');
@@ -919,7 +938,9 @@ document.getElementById('stockFilters').addEventListener('click',e=>{const b=e.t
   const f=b.dataset.f;grid.querySelectorAll('.pr').forEach(c=>{c.hidden=f==='available'?c.dataset.sold==='true':f==='sold'?c.dataset.sold!=='true':false})});
 const sheet=document.getElementById('sheet');let cur=0;
 function openSheet(i){cur=(i+STOCK.length)%STOCK.length;const r=STOCK[cur];
-  const img=document.getElementById('shImg');img.src=`img/estoque/raquete-${cur+1}.jpg`;img.alt=`Par de raquetes ${r.brand} ${r.model}`;
+  const views=['frente do par','lateral','lateral, outro ângulo'];
+  document.getElementById('shThumbs').innerHTML=[1,2,3].map(k=>`<button type="button" data-k="${k}" aria-label="Foto ${k}: ${views[k-1]}"><img src="img/estoque/raquete-${cur+1}-${k}.jpg" alt=""></button>`).join('');
+  showPhoto(1,true);
   const st=document.getElementById('shStatus');st.textContent=r.sold?'Vendido':'Disponível';st.classList.toggle('sold',r.sold);
   document.getElementById('shBrand').textContent=r.brand+' · par de raquetes';
   document.getElementById('shTitle').textContent=r.brand+' '+r.model;
@@ -939,6 +960,14 @@ function openSheet(i){cur=(i+STOCK.length)%STOCK.length;const r=STOCK[cur];
   document.getElementById('shWaT').textContent=r.sold?'Quero um par parecido':'Tenho interesse';
   document.getElementById('shIg').href=`https://www.instagram.com/fagner.raquetes/p/${r.id}/`;
   if(!sheet.open)sheet.showModal();}
+let photo=1;
+function showPhoto(k,instant){photo=((k-1+3)%3)+1;const r=STOCK[cur],img=document.getElementById('shImg'),src=`img/estoque/raquete-${cur+1}-${photo}.jpg`;
+  const set=()=>{img.src=src;img.alt=`Par de raquetes ${r.brand} ${r.model}, foto ${photo} de 3`;img.classList.remove('fading')};
+  if(instant||reduce)set();else{img.classList.add('fading');setTimeout(set,180)}
+  document.querySelectorAll('#shThumbs button').forEach(b=>b.setAttribute('aria-current',+b.dataset.k===photo?'true':'false'))}
+document.getElementById('shThumbs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)showPhoto(+b.dataset.k)});
+document.getElementById('galPrev').addEventListener('click',()=>showPhoto(photo-1));
+document.getElementById('galNext').addEventListener('click',()=>showPhoto(photo+1));
 grid.addEventListener('click',e=>{const b=e.target.closest('.pr');if(b)openSheet(+b.dataset.i)});
 document.getElementById('shClose').addEventListener('click',()=>sheet.close());
 document.getElementById('shPrev').addEventListener('click',()=>openSheet(cur-1));

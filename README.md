@@ -12,7 +12,7 @@ Página única e estática, sem dependências de build. Tudo está em `index.htm
 
 Seções: início com raquete interativa (canvas), serviços, encordoamento com montador que envia as escolhas pelo WhatsApp, vitrine, estoque (pares anunciados no Instagram, com ficha técnica), quem sou eu, envio, comunidade e contato.
 
-As fotos do estoque ficam em `img/estoque/` e os dados de cada par na lista `STOCK` dentro do `index.html`. Para atualizar o estoque, troque a foto e edite a entrada correspondente.
+As fotos do estoque ficam em `img/estoque/` (`raquete-N-1.jpg` é a frente do par, `-2` e `-3` as laterais, em 1080 px, como no post) e os dados de cada par na lista `STOCK` dentro do `index.html`. Para atualizar o estoque, troque as fotos e edite a entrada correspondente.
 
 ## Rodar localmente
 
