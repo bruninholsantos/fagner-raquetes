@@ -215,6 +215,64 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 .sc-foot .bar i{display:block;height:100%;width:0;background:var(--teal)}
 @media (max-width:760px){.rk{flex-basis:74vw}.sc-nav{display:none}}
 
+/* estoque (posts do Instagram) */
+.stock-top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filters .chip{display:inline-flex;gap:8px;align-items:center}
+.filters .chip em{font-style:normal;font-family:var(--f-mono);font-size:.75rem;opacity:.75}
+.stock{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.pr{position:relative;display:grid;gap:12px;align-content:start;padding:10px 10px 16px;border-radius:20px;background:var(--graphite-800);border:1px solid var(--line);color:inherit;font:inherit;text-align:left;cursor:pointer;min-width:0;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .25s}
+.pr:hover{transform:translateY(-5px);border-color:rgba(47,196,196,.55)}
+.pr .ph{position:relative;aspect-ratio:1;border-radius:14px;overflow:hidden;background:var(--graphite-700)}
+.pr .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.pr:hover .ph img{transform:scale(1.07)}
+.pr .ph::after{content:"Ver especificações";position:absolute;inset:auto 10px 10px 10px;padding:9px;border-radius:10px;text-align:center;font-size:.82rem;font-weight:700;background:var(--teal);color:var(--graphite-900);transform:translateY(130%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.pr:hover .ph::after,.pr:focus-visible .ph::after{transform:none}
+.status{position:absolute;top:10px;left:10px;z-index:1;font-family:var(--f-mono);font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 9px;border-radius:7px;background:var(--ball);color:var(--graphite-900)}
+.status.sold{background:rgba(29,29,38,.85);color:var(--string);border:1px solid var(--line)}
+.pr.is-sold .ph img{filter:saturate(.55) brightness(.8)}
+.pr .info{display:grid;gap:4px;padding-inline:6px}
+.pr .brandn{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+.pr h3{font-size:1.08rem}
+.pr .mini{display:flex;flex-wrap:wrap;gap:4px 10px;font-family:var(--f-mono);font-size:.74rem;color:var(--muted)}
+.pr .price{font-family:var(--f-display);font-variation-settings:"wdth" 118;font-weight:800;font-size:1.25rem;margin-top:4px;font-variant-numeric:tabular-nums}
+.pr .price small{font-family:var(--f-body);font-weight:500;font-size:.75rem;color:var(--muted);margin-left:6px}
+.pr.is-sold .price{color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px}
+.stock-note{margin-top:22px;font-size:.9rem;color:var(--muted)}
+@media (max-width:980px){.stock{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:720px){.stock{grid-template-columns:repeat(2,1fr);gap:10px}.pr h3{font-size:.98rem}.pr .ph::after{display:none}}
+/* ficha */
+dialog.sheet{border:0;padding:0;max-width:min(980px,calc(100vw - 24px));width:100%;max-height:calc(100dvh - 24px);border-radius:26px;background:var(--graphite-800);color:var(--string);box-shadow:0 40px 120px -20px rgba(0,0,0,.7);overflow:auto}
+dialog.sheet::backdrop{background:rgba(14,14,20,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+dialog.sheet[open]{animation:pop .45s cubic-bezier(.2,.9,.25,1.1)}
+@keyframes pop{from{opacity:0;transform:translateY(30px) scale(.96)}to{opacity:1;transform:none}}
+.sheet-grid{display:grid;grid-template-columns:1fr 1fr}
+.sheet-ph{position:relative;background:var(--graphite-700);min-height:100%}
+.sheet-ph img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1}
+.sheet-body{padding:clamp(20px,3.5vw,36px);display:grid;gap:18px;align-content:start;min-width:0}
+.sheet-x{position:absolute;top:12px;right:12px;z-index:2;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:rgba(29,29,38,.8);color:var(--string);cursor:pointer;display:grid;place-items:center;font-size:1.4rem;line-height:1}
+.sheet-x:hover{border-color:var(--teal)}
+.sheet h3{font-size:clamp(1.5rem,3vw,2.1rem)}
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.specs div{background:var(--graphite-900);padding:12px 14px;display:grid;gap:2px;min-width:0}
+.specs dt{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.specs dd{margin:0;font-family:var(--f-display);font-variation-settings:"wdth" 112;font-weight:700;font-size:1.08rem;font-variant-numeric:tabular-nums}
+.specs .score{grid-column:span 2;display:flex;align-items:center;gap:14px}
+.score .bar{flex:1;height:8px;border-radius:8px;background:var(--graphite-700);overflow:hidden}
+.score .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--ball));border-radius:8px}
+.sheet-price{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.sheet-price strong{font-family:var(--f-display);font-variation-settings:"wdth" 125;font-weight:900;font-size:2.2rem;line-height:1;font-variant-numeric:tabular-nums}
+.sheet-price span{color:var(--muted);font-size:.9rem}
+.perks{display:flex;flex-wrap:wrap;gap:8px}
+.perks span{font-size:.8rem;padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:var(--graphite-900)}
+.caption{margin:0;padding:14px 16px;border-left:3px solid var(--teal);background:var(--graphite-900);border-radius:0 12px 12px 0;font-size:.9rem;color:var(--muted);white-space:pre-line}
+.caption b{display:block;margin-bottom:6px;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);font-weight:600}
+.sheet-actions{display:flex;flex-wrap:wrap;gap:10px}
+.sheet-nav{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:16px}
+.sheet-nav button{font:600 .85rem var(--f-body);color:var(--muted);background:none;border:0;cursor:pointer;padding:6px 0}
+.sheet-nav button:hover{color:var(--string)}
+@media (max-width:760px){.sheet-grid{grid-template-columns:1fr}.sheet-ph img{aspect-ratio:4/3}}
+
 /* quem sou eu */
 .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,6vw,80px);align-items:center}
 .portrait{position:relative;aspect-ratio:4/5;border-radius:28px;overflow:hidden;background:linear-gradient(160deg,var(--graphite),var(--graphite-900));border:1px solid var(--line);max-width:100%}
@@ -323,7 +381,7 @@ footer .f{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;ali
     <ul>
       <li><a href="#servicos">Serviços</a></li>
       <li><a href="#encordoamento">Encordoamento</a></li>
-      <li><a href="#vitrine">Vitrine</a></li>
+      <li><a href="#estoque">Estoque</a></li>
       <li><a href="#sobre">Quem sou eu</a></li>
       <li><a href="#contato">Loja</a></li>
     </ul>
@@ -531,6 +589,48 @@ footer .f{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;ali
       </div>
     </div>
   </section>
+
+  <section class="block" style="padding-top:clamp(20px,4vw,40px)" id="estoque">
+    <div class="wrap">
+      <div class="stock-top">
+        <div class="head rv" style="margin-bottom:0">
+          <span class="eyebrow">Direto do Instagram</span>
+          <h2>Pares em estoque.</h2>
+          <p class="lead">Os últimos pares anunciados no @fagner.raquetes, com foto e ficha técnica. Toque em uma raquete para ver as especificações.</p>
+        </div>
+        <div class="filters" id="stockFilters">
+          <button type="button" class="chip" aria-pressed="true" data-f="all">Todas <em id="cAll">8</em></button>
+          <button type="button" class="chip" aria-pressed="false" data-f="available">Disponíveis <em id="cAv">0</em></button>
+          <button type="button" class="chip" aria-pressed="false" data-f="sold">Vendidas <em id="cSold">0</em></button>
+        </div>
+      </div>
+      <div class="stock" id="stockGrid"></div>
+      <p class="stock-note">Valores do par no Pix, com frete grátis, conforme o anúncio. O estoque gira rápido: confirme a disponibilidade no WhatsApp.</p>
+    </div>
+  </section>
+
+  <dialog class="sheet" id="sheet" aria-labelledby="shTitle">
+    <button type="button" class="sheet-x" id="shClose" aria-label="Fechar">×</button>
+    <div class="sheet-grid">
+      <div class="sheet-ph"><span class="status" id="shStatus">Disponível</span><img id="shImg" src="" alt=""></div>
+      <div class="sheet-body">
+        <div style="display:grid;gap:6px">
+          <span class="eyebrow" id="shBrand"></span>
+          <h3 id="shTitle"></h3>
+          <span class="mono" style="font-size:.78rem;color:var(--muted)" id="shDate"></span>
+        </div>
+        <dl class="specs" id="shSpecs"></dl>
+        <div class="sheet-price"><strong id="shPrice"></strong><span>o par · Pix</span></div>
+        <div class="perks" id="shPerks"></div>
+        <p class="caption" id="shCaption"></p>
+        <div class="sheet-actions">
+          <a class="btn btn-teal" id="shWa" href="#" target="_blank" rel="noopener"><svg><use href="#wa"/></svg><span id="shWaT">Tenho interesse</span></a>
+          <a class="btn btn-ghost" id="shIg" href="#" target="_blank" rel="noopener"><svg width="18" height="18"><use href="#ig"/></svg>Ver post</a>
+        </div>
+        <div class="sheet-nav"><button type="button" id="shPrev">← Anterior</button><button type="button" id="shNext">Próxima →</button></div>
+      </div>
+    </div>
+  </dialog>
 
   <section class="block" id="sobre">
     <div class="wrap about-grid">
@@ -784,6 +884,67 @@ addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x;if(
 addEventListener('pointerup',()=>{if(!drag)return;const moved=drag.moved;drag=null;if(moved){track.classList.remove('dragging');suppress=true;setTimeout(()=>suppress=false,0)}});
 let suppress=false;track.addEventListener('click',ev=>{if(suppress){ev.preventDefault();ev.stopPropagation()}},true);
 updSC();
+
+/* ---------- estoque: posts do Instagram ---------- */
+const STOCK=[
+ {id:'DeroBVuHCR9',brand:'Wilson',model:'Blade V10 Pro Labs',head:98,weight:305,pattern:'16x19',grip:'L3',score:'9,5',price:2999,sold:true,date:'19 out 2026',
+  caption:'Par Wilson Blade V 10 Pro Labs ✅️ Vendidas ✅️Cabeça 98\nPeso 305 Cordas 16x19 Empunhadura L 3\nNota 9,5/10 o Par Valor 2,999,00 Pix\nFrete grátis So Venda 🎾🎾🎾'},
+ {id:'DeiD2Soo5vg',brand:'Yonex',model:'VCore 98 2026',head:98,weight:305,pattern:'16x19',grip:'L2',score:'9,5',price:3699,sold:false,date:'15 out 2026',
+  caption:'Par Yonex Vcore Cabeça 98 2026\nPeso 305 Cordas 16x19 Empunhadura L 2\nNota 9,5/10 o Par Valor 3,699,00 Pix\nFrete grátis  So Venda 🎾🎾🎾'},
+ {id:'DedMpoejgPJ',brand:'Babolat',model:'Pure Aero Lite 2026',head:100,weight:270,pattern:'16x19',grip:'L2',score:'9,5',price:2599,sold:false,date:'13 out 2026',
+  caption:'Par Babolat Pure Aero Lite Cabeça 100 2026\nPeso 270 Cordas 16x19 Empunhadura L2\nNota 9,5/10 o Par Valor 2,599,00 Pix\nFrete grátis  So Venda 🎾🎾🎾'},
+ {id:'DeKtNFJgX17',brand:'Yonex',model:'VCore 98',head:98,weight:305,pattern:'16x19',grip:'L3',score:'9,5',price:2749,sold:true,date:'6 out 2026',
+  caption:'Par Yonex Vcore Cabeça 98 ✅️ Vendidas ✅️\nPeso 305 Cordas 16x19 Empunhadura L 3\nNota 9,5/10 o Par Valor 2,749,00 Pix\nFrete grátis  So Venda 🎾🎾🎾'},
+ {id:'Dd9m3-4Iw36',brand:'Head',model:'Radical Pro',head:98,weight:310,pattern:'16x19',grip:'L3',score:'9,0',price:1199,sold:true,date:'1 out 2026',
+  caption:'Par Head Radical Pro ✅️ Vendidas ✅️Cabeça 98\nPeso 310 Cordas 16x19 Empunhadura L 3\nNota 9,0/10 o Par Valor 1,199,00 Pix\nFrete grátis So Venda'},
+ {id:'Dd4v6dzAUmV',brand:'Head',model:'Extreme MP',head:100,weight:300,pattern:'16x19',grip:'L4',gripNote:'pode trocar paleta para L2 e L3',score:'9,5',price:2699,sold:true,date:'29 set 2026',
+  caption:'Par Head Extreme MP✅️ Vendidas✅️Cabeça 100\nPeso 300 Cordas 16x19 Empunhadura L 4 Podendo Trocar Paleta L2 eL3 Nota 9,5/10 o Par Valor 2,699,00Pix Frete grátis So Venda 🎾🎾🎾'},
+ {id:'Dd2Vl5FjgPy',brand:'Babolat',model:'Pure Strike',head:98,weight:305,pattern:'16x19',grip:'L3',score:'9,6',price:1499,sold:true,date:'28 set 2026',
+  caption:'Par Babolat Pure Strike ✅️ Vendidas ✅️Cabeça 98\nPeso 305 Cordas 16x19 Empunhadura L 3\nNota 9,6/10 o Par Valor 1,499,00 Pix\nFrete grátis Do Venda 🎾🎾🎾'},
+ {id:'Ddt_AGPHIQg',brand:'Babolat',model:'Pure Aero Alcaraz',head:98,weight:305,pattern:'16x20',grip:'L3',score:'9,2',price:2099,sold:true,date:'25 set 2026',
+  caption:'Par Babolat✅️ Vendidas ✅️Pure Aero Alcaraz Cabeça 98\nPeso 305 Cordas 16x20 Empunhadura L 3\nNota 9,2/10 O par Valor 2,099,00 Pix\nFrete grátis So Venda 🎾🎾🎾'}
+];
+const brl=v=>'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2});
+const sqcm=h=>Math.round(h*6.4516);
+const grid=document.getElementById('stockGrid');
+grid.innerHTML=STOCK.map((r,i)=>`<button type="button" class="pr${r.sold?' is-sold':''}" data-i="${i}" data-sold="${r.sold}" aria-label="Ver especificações: par ${r.brand} ${r.model}">
+  <div class="ph"><span class="status${r.sold?' sold':''}">${r.sold?'Vendido':'Disponível'}</span><img src="img/estoque/raquete-${i+1}.jpg" alt="Par de raquetes ${r.brand} ${r.model} na parede da loja" loading="lazy" width="640" height="640"></div>
+  <div class="info"><span class="brandn">${r.brand} · par</span><h3>${r.model}</h3>
+  <div class="mini"><span>${r.head} pol²</span><span>${r.weight} g</span><span>${r.pattern}</span><span>${r.grip}</span></div>
+  <div class="price">${brl(r.price)}<small>o par</small></div></div></button>`).join('');
+const nAv=STOCK.filter(r=>!r.sold).length;
+document.getElementById('cAv').textContent=nAv;document.getElementById('cSold').textContent=STOCK.length-nAv;document.getElementById('cAll').textContent=STOCK.length;
+document.getElementById('stockFilters').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  document.querySelectorAll('#stockFilters button').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+  const f=b.dataset.f;grid.querySelectorAll('.pr').forEach(c=>{c.hidden=f==='available'?c.dataset.sold==='true':f==='sold'?c.dataset.sold!=='true':false})});
+const sheet=document.getElementById('sheet');let cur=0;
+function openSheet(i){cur=(i+STOCK.length)%STOCK.length;const r=STOCK[cur];
+  const img=document.getElementById('shImg');img.src=`img/estoque/raquete-${cur+1}.jpg`;img.alt=`Par de raquetes ${r.brand} ${r.model}`;
+  const st=document.getElementById('shStatus');st.textContent=r.sold?'Vendido':'Disponível';st.classList.toggle('sold',r.sold);
+  document.getElementById('shBrand').textContent=r.brand+' · par de raquetes';
+  document.getElementById('shTitle').textContent=r.brand+' '+r.model;
+  document.getElementById('shDate').textContent='Anunciado em '+r.date;
+  const sc=parseFloat(r.score.replace(',','.'));
+  document.getElementById('shSpecs').innerHTML=
+   `<div><dt>Cabeça</dt><dd>${r.head} pol² <small style="color:var(--muted);font-weight:400">· ${sqcm(r.head)} cm²</small></dd></div>
+    <div><dt>Peso</dt><dd>${r.weight} g</dd></div>
+    <div><dt>Padrão de cordas</dt><dd>${r.pattern}</dd></div>
+    <div><dt>Empunhadura</dt><dd>${r.grip}${r.gripNote?`<small style="display:block;color:var(--muted);font-weight:400;font-size:.78rem">${r.gripNote}</small>`:''}</dd></div>
+    <div class="score"><div style="display:grid;gap:2px"><dt>Estado (nota)</dt><dd>${r.score}/10</dd></div><div class="bar"><i style="width:${sc*10}%"></i></div></div>`;
+  document.getElementById('shPrice').textContent=brl(r.price);
+  document.getElementById('shPerks').innerHTML='<span>Frete grátis</span><span>Só venda (sem troca)</span><span>Valor do par</span>';
+  document.getElementById('shCaption').innerHTML='<b>Legenda original do post</b>';document.getElementById('shCaption').append(r.caption);
+  const msg=r.sold?`Olá, Fagner! Vi no site o par ${r.brand} ${r.model} (já vendido). Vai chegar outro parecido?`:`Olá, Fagner! Tenho interesse no par ${r.brand} ${r.model} (${r.head} pol², ${r.weight} g, ${r.pattern}, ${r.grip}) por ${brl(r.price)} no Pix. Ainda está disponível?`;
+  document.getElementById('shWa').href='https://wa.me/5511947106033?text='+encodeURIComponent(msg);
+  document.getElementById('shWaT').textContent=r.sold?'Quero um par parecido':'Tenho interesse';
+  document.getElementById('shIg').href=`https://www.instagram.com/fagner.raquetes/p/${r.id}/`;
+  if(!sheet.open)sheet.showModal();}
+grid.addEventListener('click',e=>{const b=e.target.closest('.pr');if(b)openSheet(+b.dataset.i)});
+document.getElementById('shClose').addEventListener('click',()=>sheet.close());
+document.getElementById('shPrev').addEventListener('click',()=>openSheet(cur-1));
+document.getElementById('shNext').addEventListener('click',()=>openSheet(cur+1));
+sheet.addEventListener('click',e=>{if(e.target===sheet)sheet.close()});
+sheet.addEventListener('keydown',e=>{if(e.key==='ArrowRight')openSheet(cur+1);if(e.key==='ArrowLeft')openSheet(cur-1)});
 
 /* ---------- copiar telefone ---------- */
 const cb=document.getElementById('copyBtn');

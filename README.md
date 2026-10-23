@@ -10,7 +10,9 @@ Site institucional da **Fagner Raquetes**: venda de raquetes de tênis novas e s
 
 Página única e estática, sem dependências de build. Tudo está em `index.html` (HTML, CSS e JavaScript); as fontes vêm do Google Fonts.
 
-Seções: início com raquete interativa (canvas), serviços, encordoamento passo a passo com calculadora de tensão, vitrine com rolagem horizontal, quem sou eu, envio para o Brasil, comunidade e contato.
+Seções: início com raquete interativa (canvas), serviços, encordoamento com montador que envia as escolhas pelo WhatsApp, vitrine, estoque (pares anunciados no Instagram, com ficha técnica), quem sou eu, envio, comunidade e contato.
+
+As fotos do estoque ficam em `img/estoque/` e os dados de cada par na lista `STOCK` dentro do `index.html`. Para atualizar o estoque, troque a foto e edite a entrada correspondente.
 
 ## Rodar localmente
 
