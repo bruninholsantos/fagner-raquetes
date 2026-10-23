@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1d1d26">
+<title>Fagner Raquetes</title>
+<meta name="description" content="Fagner Raquetes: raquetes de tênis novas e seminovas, trocas, acessórios e encordoamento especializado. Enviamos para todo o Brasil.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Fredoka:wght@600;700&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>img{max-width:100%}[hidden]{display:none!important}body{margin:0}</style>
+<style>
+/* Layout: palco grafite (a cor do logo) com o encordoamento 16×19 como gramática visual — grades, linhas de quadra e tensão. Tema único escuro, por escolha de marca. */
+:root{
+  --graphite-900:#1d1d26;
+  --graphite-800:#262632;
+  --graphite-700:#33333f;
+  --graphite:#48485c;      /* fundo do logo */
+  --teal:#2fc4c4;          /* raquete e "raquetes" do logo */
+  --teal-deep:#0f9a9a;
+  --string:#eef3f2;        /* corda branca */
+  --ball:#e3f05a;          /* bola, usado só na bola */
+  --muted:#a4a4b8;
+  --line:rgba(238,243,242,.12);
+  --f-display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --f-logo:"Fredoka","Nunito",system-ui,sans-serif;
+  --r:18px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--graphite-900);color:var(--string);font-family:var(--f-body);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--graphite-900)}
+a{color:inherit}
+::selection{background:var(--teal);color:var(--graphite-900)}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1200px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);font-variation-settings:"wdth" 125;font-weight:800;line-height:.98;letter-spacing:-.01em;text-wrap:balance;margin:0}
+h2{font-size:clamp(2.1rem,5.2vw,4.2rem)}
+h3{font-size:1.35rem;font-variation-settings:"wdth" 112;line-height:1.1}
+p{margin:0}
+.eyebrow{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+.lead{font-size:clamp(1.05rem,1.6vw,1.2rem);color:var(--muted);max-width:56ch}
+.mono{font-family:var(--f-mono)}
+
+/* progresso como linha de quadra */
+.progress{position:fixed;left:0;top:env(safe-area-inset-top,0px);height:3px;width:100%;z-index:70;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--teal),var(--string))}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--graphite-900) 78%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand svg{width:42px;height:42px;flex:none}
+.brand .wm{font-family:var(--f-logo);font-weight:700;line-height:.9;font-size:1.15rem}
+.brand .wm span{display:block;color:var(--teal)}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;font-size:.92rem;color:var(--muted);transition:color .2s}
+.nav ul a:hover{color:var(--string)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 20px;border-radius:999px;font-weight:700;text-decoration:none;font-size:.95rem;border:0;cursor:pointer;font-family:inherit;transition:transform .25s cubic-bezier(.2,.8,.2,1),background .2s,box-shadow .25s;will-change:transform}
+.btn-teal{background:var(--teal);color:var(--graphite-900);box-shadow:0 10px 30px -10px rgba(47,196,196,.7)}
+.btn-teal:hover{background:#45d6d6;box-shadow:0 14px 40px -10px rgba(47,196,196,.9)}
+.btn-ghost{background:transparent;color:var(--string);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--teal)}
+.btn svg{width:18px;height:18px}
+@media (max-width:860px){.nav ul{display:none}}
+@media (max-width:420px){.nav .btn span.lg{display:none}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding-block:clamp(40px,7vw,90px) clamp(30px,5vw,60px)}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(60% 60% at 75% 40%,rgba(47,196,196,.18),transparent 70%),
+  repeating-linear-gradient(90deg,transparent 0 79px,rgba(238,243,242,.035) 79px 80px),
+  repeating-linear-gradient(0deg,transparent 0 79px,rgba(238,243,242,.035) 79px 80px);pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(20px,4vw,60px);align-items:center}
+.hero h1{font-size:clamp(2.7rem,7.4vw,6.4rem)}
+.hero h1 .t{color:var(--teal)}
+.hero h1 .o{-webkit-text-stroke:2px var(--string);color:transparent}
+.hero-copy{display:grid;gap:26px;min-width:0}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+.stage{position:relative;aspect-ratio:1/1.08;width:100%;max-width:100%;min-width:0}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;cursor:crosshair;touch-action:pan-y}
+.stage .hint{position:absolute;right:6%;bottom:4%;font-family:var(--f-mono);font-size:.72rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.stage .hint i{width:8px;height:8px;border-radius:50%;background:var(--ball);box-shadow:0 0 12px var(--ball);animation:pulse 1.6s infinite}
+.spec{position:absolute;font-family:var(--f-mono);font-size:.72rem;color:var(--string);background:rgba(29,29,38,.75);border:1px solid var(--line);padding:6px 10px;border-radius:8px;backdrop-filter:blur(6px);white-space:nowrap}
+.spec b{color:var(--teal);font-weight:600}
+.spec.s1{left:2%;top:14%}.spec.s2{right:0;top:42%}.spec.s3{left:6%;bottom:16%}
+@keyframes pulse{50%{transform:scale(1.5);opacity:.6}}
+.stats{position:relative;display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(30px,5vw,60px);border-top:1px solid var(--line)}
+.stat{padding:22px 18px 6px 0;display:grid;gap:4px}
+.stat + .stat{padding-left:18px;border-left:1px solid var(--line)}
+.stat strong{font-family:var(--f-display);font-variation-settings:"wdth" 125;font-size:clamp(1.8rem,3.6vw,2.8rem);font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:.88rem}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.stage{max-width:520px;margin-inline:auto}.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(3){padding-left:0;border-left:0}.stat:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* marquee */
+.marquee{border-block:1px solid var(--line);background:var(--teal);color:var(--graphite-900);overflow:hidden;transform:rotate(-1.4deg);margin-block:30px 10px;width:104%;margin-left:-2%}
+.marquee .track{display:flex;width:max-content;animation:mq 34s linear infinite}
+.marquee span{font-family:var(--f-display);font-variation-settings:"wdth" 125;font-weight:800;font-size:clamp(1.1rem,2.4vw,1.7rem);padding:14px 22px;white-space:nowrap;display:flex;align-items:center;gap:44px}
+.marquee span::after{content:"";width:16px;height:16px;border-radius:50%;background:var(--ball);box-shadow:inset -3px -2px 0 rgba(0,0,0,.18)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* seções */
+section.block{padding-block:clamp(70px,10vw,130px)}
+.head{display:grid;gap:16px;margin-bottom:clamp(36px,5vw,60px);max-width:820px}
+
+/* serviços */
+.services{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.svc{position:relative;grid-column:span 2;background:var(--graphite-800);border:1px solid var(--line);border-radius:var(--r);padding:28px;display:grid;gap:14px;align-content:start;overflow:hidden;min-width:0;transition:border-color .3s,transform .4s cubic-bezier(.2,.8,.2,1)}
+.svc:hover{border-color:rgba(47,196,196,.55);transform:translateY(-4px)}
+.svc::after{content:"";position:absolute;inset:0;background:radial-gradient(300px circle at var(--mx,50%) var(--my,0%),rgba(47,196,196,.14),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.svc:hover::after{opacity:1}
+.svc.wide{grid-column:span 3}
+.svc .ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:rgba(47,196,196,.12);color:var(--teal)}
+.svc .ic svg{width:28px;height:28px}
+.svc p{color:var(--muted)}
+.svc .tag{justify-self:start;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:6px;border:1px solid var(--line);color:var(--string)}
+.svc.feature{background:linear-gradient(140deg,var(--teal-deep),var(--graphite-700) 70%);border-color:transparent}
+.svc.feature p{color:rgba(238,243,242,.85)}
+.svc.feature .ic{background:rgba(238,243,242,.14);color:var(--string)}
+@media (max-width:900px){.services{grid-template-columns:1fr 1fr}.svc,.svc.wide{grid-column:span 1}.svc.feature{grid-column:span 2}}
+@media (max-width:560px){.services{grid-template-columns:1fr}.svc.feature{grid-column:span 1}}
+
+/* encordoamento */
+.stringing{background:var(--graphite-800);border-block:1px solid var(--line)}
+.str-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,90px);align-items:start}
+.str-visual{position:sticky;top:calc(env(safe-area-inset-top,0px) + 100px);display:grid;place-items:center}
+.str-visual svg{width:min(100%,440px);height:auto;overflow:visible}
+.str-visual .badge{margin-top:10px;font-family:var(--f-mono);font-size:.8rem;color:var(--muted);text-align:center}
+.str-visual .badge b{color:var(--teal);font-size:1.6rem;display:block;font-family:var(--f-display);font-variation-settings:"wdth" 125}
+#mainsG line,#crossG line{stroke:var(--string);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:400;stroke-dashoffset:400;transition:stroke-dashoffset .9s cubic-bezier(.6,.1,.2,1)}
+.on-mains #mainsG line,.on-crosses #mainsG line,.on-crosses #crossG line{stroke-dashoffset:0}
+.str-frame{fill:none;stroke:var(--teal);stroke-width:13}
+.on-done .str-frame{filter:drop-shadow(0 0 18px rgba(47,196,196,.7))}
+.steps{display:grid;gap:clamp(60px,10vh,120px);padding-block:20px 40px;min-width:0}
+.step{display:grid;gap:14px;opacity:.38;transition:opacity .5s}
+.step.active{opacity:1}
+.step .num{font-family:var(--f-mono);color:var(--teal);font-size:.85rem;letter-spacing:.12em}
+.step p{color:var(--muted)}
+.step ul{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.step li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--graphite-900)}
+.step li b{font-family:var(--f-mono);font-size:.78rem;color:var(--teal);font-weight:600;white-space:nowrap}
+.step li span{color:var(--muted);font-size:.95rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:.85rem;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--graphite-900)}
+/* calculadora */
+.tension{margin-top:8px;padding:22px;border-radius:var(--r);background:var(--graphite-900);border:1px solid rgba(47,196,196,.35);display:grid;gap:16px}
+.tension .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.tension .val{font-family:var(--f-display);font-variation-settings:"wdth" 125;font-weight:800;font-size:2.6rem;line-height:1;font-variant-numeric:tabular-nums}
+.tension .val small{font-size:1rem;color:var(--muted);font-family:var(--f-mono);font-weight:400;margin-left:4px}
+.tension .kg{font-family:var(--f-mono);color:var(--teal);font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:6px;background:linear-gradient(90deg,var(--teal) var(--p,50%),var(--graphite-700) var(--p,50%))}
+input[type=range]::-moz-range-track{height:6px;border-radius:6px;background:linear-gradient(90deg,var(--teal) var(--p,50%),var(--graphite-700) var(--p,50%))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;margin-top:-10px;border-radius:50%;background:var(--ball);border:3px solid var(--graphite-900);box-shadow:0 0 0 2px var(--ball)}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--ball);border:3px solid var(--graphite-900)}
+.meter{display:grid;gap:8px}
+.meter .lbl{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.meter .bar{height:8px;border-radius:8px;background:var(--graphite-700);overflow:hidden}
+.meter .bar i{display:block;height:100%;background:var(--teal);border-radius:8px;transition:width .25s}
+.tension .note{font-size:.92rem;color:var(--string)}
+@media (max-width:860px){.str-grid{grid-template-columns:1fr}.str-visual{position:relative;top:0}.str-visual svg{width:min(70%,300px)}.step{opacity:1}}
+
+/* vitrine horizontal */
+.showcase{position:relative}
+.sc-sticky{position:sticky;top:calc(env(safe-area-inset-top,0px) + 66px);overflow:hidden;padding-block:40px}
+.sc-track{display:flex;gap:20px;will-change:transform;padding-left:max(16px,calc((100vw - 1200px)/2 + 16px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.rk{flex:0 0 clamp(250px,26vw,320px);border-radius:24px;padding:22px;background:var(--graphite-800);border:1px solid var(--line);display:grid;gap:14px;position:relative;overflow:hidden}
+.rk .art{aspect-ratio:3/4;border-radius:16px;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,rgba(238,243,242,.07),transparent 65%),var(--graphite-700);overflow:hidden}
+.rk .art svg{width:78%;height:auto;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.rk:hover .art svg{transform:rotate(-8deg) scale(1.05)}
+.rk h3{font-size:1.15rem}
+.rk .meta{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.rk .pill{font-family:var(--f-mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;padding:4px 9px;border-radius:6px;background:rgba(47,196,196,.14);color:var(--teal)}
+.rk p{color:var(--muted);font-size:.92rem}
+.rk.cta{background:var(--teal);color:var(--graphite-900);align-content:center;text-decoration:none}
+.rk.cta h3{font-size:1.8rem}
+.rk.cta p{color:var(--graphite-800)}
+.sc-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:24px;flex-wrap:wrap}
+.sc-foot .bar{flex:1;min-width:120px;height:2px;background:var(--line);border-radius:2px;overflow:hidden}
+.sc-foot .bar i{display:block;height:100%;width:0;background:var(--teal)}
+@media (max-width:760px){.sc-sticky{position:relative;top:0}.sc-track{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;transform:none!important;padding-bottom:10px}.rk{scroll-snap-align:start;flex-basis:78vw}.showcase{height:auto!important}}
+
+/* quem sou eu */
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,6vw,80px);align-items:center}
+.portrait{position:relative;aspect-ratio:4/5;border-radius:28px;overflow:hidden;background:linear-gradient(160deg,var(--graphite),var(--graphite-900));border:1px solid var(--line);max-width:100%}
+.portrait svg.court{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+.portrait .mono-big{position:absolute;inset:auto 24px 24px 24px;display:grid;gap:6px}
+.portrait .mono-big strong{font-family:var(--f-display);font-variation-settings:"wdth" 125;font-size:clamp(3rem,7vw,5.5rem);line-height:.85;font-weight:900}
+.portrait .mono-big span{font-family:var(--f-mono);font-size:.78rem;color:var(--teal);letter-spacing:.12em;text-transform:uppercase}
+.portrait .logo-float{position:absolute;top:24px;right:24px;width:38%;animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-12px) rotate(4deg)}}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:30px}
+.fact{padding:20px;border-radius:16px;border:1px solid var(--line);background:var(--graphite-800);display:grid;gap:6px;min-width:0}
+.fact b{font-family:var(--f-display);font-variation-settings:"wdth" 118;font-size:1.25rem;line-height:1.1}
+.fact span{color:var(--muted);font-size:.92rem}
+.fact.big{grid-column:span 2;display:flex;align-items:center;gap:20px}
+.fact.big b{font-size:3rem;color:var(--teal);font-variation-settings:"wdth" 125;font-weight:900}
+@media (max-width:860px){.about-grid{grid-template-columns:1fr}.portrait{aspect-ratio:16/11}.portrait .logo-float{width:26%}}
+@media (max-width:480px){.facts{grid-template-columns:1fr}.fact.big{grid-column:span 1}}
+
+/* envio */
+.ship{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:24px;overflow:hidden}
+.ship .s{padding:32px 28px;display:grid;gap:12px;align-content:start;position:relative;min-width:0}
+.ship .s + .s{border-left:1px solid var(--line)}
+.ship .s .n{font-family:var(--f-mono);font-size:.8rem;color:var(--teal)}
+.ship .s p{color:var(--muted)}
+.ship .s svg{width:44px;height:44px;color:var(--teal)}
+@media (max-width:760px){.ship{grid-template-columns:1fr}.ship .s + .s{border-left:0;border-top:1px solid var(--line)}}
+
+/* comunidade */
+.community{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.com{aspect-ratio:1;border-radius:22px;padding:22px;display:grid;align-content:space-between;background:var(--graphite-800);border:1px solid var(--line);position:relative;overflow:hidden;text-decoration:none;min-width:0;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.com:hover{transform:translateY(-6px) rotate(-1deg)}
+.com .ring{width:64px;height:64px;border-radius:50%;padding:3px;background:conic-gradient(var(--teal),var(--ball),var(--teal))}
+.com .ring div{width:100%;height:100%;border-radius:50%;background:var(--graphite-900);display:grid;place-items:center;color:var(--teal)}
+.com .ring svg{width:28px;height:28px}
+.com h3{font-size:1.2rem}
+.com p{color:var(--muted);font-size:.9rem;margin-top:6px}
+@media (max-width:900px){.community{grid-template-columns:1fr 1fr}}
+@media (max-width:420px){.com{aspect-ratio:auto;gap:30px}}
+
+/* contato */
+.contact{position:relative;overflow:hidden;background:var(--teal);color:var(--graphite-900);border-radius:32px;padding:clamp(28px,5vw,64px);display:grid;grid-template-columns:1.1fr .9fr;gap:40px}
+.contact::before{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;border:2px solid rgba(29,29,38,.18);box-shadow:0 0 0 40px rgba(29,29,38,.05),0 0 0 80px rgba(29,29,38,.04)}
+.contact h2{font-size:clamp(2.2rem,5vw,4rem)}
+.contact .lead{color:var(--graphite-800)}
+.contact .btn-dark{background:var(--graphite-900);color:var(--string)}
+.contact .btn-dark:hover{background:var(--graphite-700)}
+.contact .btn-line{background:transparent;color:var(--graphite-900);box-shadow:inset 0 0 0 1.5px rgba(29,29,38,.4)}
+.contact .btn-line:hover{box-shadow:inset 0 0 0 1.5px var(--graphite-900)}
+.cbox{position:relative;display:grid;gap:14px;align-content:start;min-width:0}
+.card-c{background:var(--graphite-900);color:var(--string);border-radius:18px;padding:20px;display:grid;gap:6px}
+.card-c .k{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+.card-c .v{font-family:var(--f-display);font-variation-settings:"wdth" 112;font-size:1.3rem;font-weight:700;user-select:all;overflow-wrap:anywhere}
+.card-c .r{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.copy{font:600 .8rem var(--f-mono);background:transparent;color:var(--string);border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+.copy:hover{border-color:var(--teal)}
+.card-c small{color:var(--muted)}
+@media (max-width:860px){.contact{grid-template-columns:1fr}}
+
+footer{padding-block:50px 40px;color:var(--muted);font-size:.9rem}
+footer .f{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--line);padding-top:30px}
+
+/* revelação ao rolar (só onde há suporte; sem suporte tudo já está visível) */
+@supports (animation-timeline: view()){
+  .rv{animation:rv linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+  @keyframes rv{from{opacity:.15;transform:translateY(46px) scale(.98)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="mark" viewBox="0 0 120 120">
+      <circle cx="60" cy="60" r="60" fill="#48485c"/>
+      <g transform="rotate(32 70 34)">
+        <ellipse cx="70" cy="30" rx="15" ry="19" fill="#2fc4c4"/>
+        <clipPath id="hc"><ellipse cx="70" cy="30" rx="11.5" ry="15.5"/></clipPath>
+        <g clip-path="url(#hc)" stroke="#48485c" stroke-width="1.3">
+          <path d="M60 10v40M64 10v40M68 10v40M72 10v40M76 10v40M80 10v40M55 16h30M55 20h30M55 24h30M55 28h30M55 32h30M55 36h30M55 40h30M55 44h30"/>
+        </g>
+        <ellipse cx="70" cy="30" rx="15" ry="19" fill="none" stroke="#eef3f2" stroke-width="2.2"/>
+        <path d="M66 48.5 70 57l4-8.5" fill="none" stroke="#eef3f2" stroke-width="2.2" stroke-linejoin="round"/>
+        <rect x="67.6" y="56" width="4.8" height="16" rx="2" fill="#eef3f2"/>
+      </g>
+      <circle cx="41" cy="27" r="8" fill="#2fc4c4"/>
+      <path d="M35 22c4 2 6 6 5 11M47 22c-3 3-4 7-2 11" fill="none" stroke="#48485c" stroke-width="1.3"/>
+      <text x="60" y="88" text-anchor="middle" font-family="Fredoka,Nunito,system-ui,sans-serif" font-weight="700" font-size="19" fill="#eef3f2">fagner</text>
+      <text x="60" y="102" text-anchor="middle" font-family="Fredoka,Nunito,system-ui,sans-serif" font-weight="700" font-size="16" fill="#2fc4c4">raquetes</text>
+      <text x="60" y="109.5" text-anchor="middle" font-family="Instrument Sans,system-ui,sans-serif" font-weight="600" font-size="4" letter-spacing=".6" fill="#eef3f2">INSTRUTOR DE TÊNIS</text>
+    </symbol>
+    <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3Z"/></symbol>
+    <symbol id="ig" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Z"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<div class="progress" id="progress"></div>
+
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="#inicio" aria-label="Fagner Raquetes, início">
+      <svg><use href="#mark"/></svg>
+      <div class="wm">fagner<span>raquetes</span></div>
+    </a>
+    <ul>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#encordoamento">Encordoamento</a></li>
+      <li><a href="#vitrine">Vitrine</a></li>
+      <li><a href="#sobre">Quem sou eu</a></li>
+      <li><a href="#contato">Loja</a></li>
+    </ul>
+    <a class="btn btn-teal mag" href="https://wa.me/5511947106033?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20raquetes%20e%20produtos%20de%20t%C3%AAnis" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
+      <svg><use href="#wa"/></svg><span class="lg">Chamar no WhatsApp</span>
+    </a>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Raquetes · Encordoamento · Tênis</span>
+          <h1>Raquete <span class="t">certa.</span><br>Corda na <span class="o">tensão</span> exata.</h1>
+          <p class="lead">Raquetes novas e seminovas, trocas e acessórios, com encordoamento feito por quem dá aula há mais de 18 anos. Da loja em São Paulo para todo o Brasil.</p>
+          <div class="hero-cta">
+            <a class="btn btn-teal mag" href="https://wa.me/5511947106033?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20raquetes%20e%20produtos%20de%20t%C3%AAnis" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Quero minha raquete</a>
+            <a class="btn btn-ghost" href="#encordoamento">Calcular minha tensão</a>
+          </div>
+        </div>
+        <div class="stage" id="stage">
+          <canvas id="racket" aria-label="Raquete interativa: toque no encordoamento para ver as cordas vibrarem"></canvas>
+          <div class="spec s1">Padrão <b>16×19</b></div>
+          <div class="spec s2">Tensão <b>52 lbs</b> · 23,6 kg</div>
+          <div class="spec s3">Empunhadura <b>L3</b></div>
+          <div class="hint"><i></i>Toque nas cordas</div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong data-count="25" data-suffix=" mil">25 mil</strong><span>seguidores no Instagram</span></div>
+        <div class="stat"><strong data-count="18" data-prefix="+">+18</strong><span>anos dando aula de tênis</span></div>
+        <div class="stat"><strong data-count="25">25</strong><span>anos dentro de quadra</span></div>
+        <div class="stat"><strong>BR</strong><span>envio para todo o país</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>Raquetes novas</span><span>Seminovas</span><span>Trocas</span><span>Encordoamento especializado</span><span>Acessórios</span><span>Envio para todo o Brasil</span>
+      <span>Raquetes novas</span><span>Seminovas</span><span>Trocas</span><span>Encordoamento especializado</span><span>Acessórios</span><span>Envio para todo o Brasil</span>
+    </div>
+  </div>
+
+  <section class="block" id="servicos">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="eyebrow">O que tem na loja</span>
+        <h2>Tudo para você entrar em quadra pronto.</h2>
+        <p class="lead">Atendimento de professor: antes de vender, a gente entende como você joga.</p>
+      </div>
+      <div class="services">
+        <article class="svc feature wide rv">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><ellipse cx="14" cy="9" rx="6" ry="7" transform="rotate(35 14 9)"/><path d="m9.5 14.5-6 6M11 6l6 6M9 9l6 6M13 4l5 5"/></svg></div>
+          <h3>Raquetes novas</h3>
+          <p>Modelos atuais das principais marcas do circuito, para iniciantes, juvenis e quem já compete. Indicação de peso, cabeça e empunhadura pelo seu estilo de jogo.</p>
+          <span class="tag">Adulto · juvenil · infantil</span>
+        </article>
+        <article class="svc wide rv">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 13.7-5.6L20 9M20 4v5h-5M20 12a8 8 0 0 1-13.7 5.6L4 15M4 20v-5h5"/></svg></div>
+          <h3>Seminovas e trocas</h3>
+          <p>Raquetes seminovas revisadas, prontas para jogar. Tem uma parada no armário? Ela pode entrar como parte do pagamento da próxima.</p>
+          <span class="tag">Sua raquete vale desconto</span>
+        </article>
+        <article class="svc rv">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 3v18M10 3v18M14 3v18M18 3v18M3 7h18M3 12h18M3 17h18"/></svg></div>
+          <h3>Encordoamento especializado</h3>
+          <p>Montagem com formação profissional pelo curso ERSA. Corda e tensão escolhidas para o seu braço e o seu jogo.</p>
+        </article>
+        <article class="svc rv">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8V6a5 5 0 0 1 10 0v2"/><rect x="4" y="8" width="16" height="13" rx="3"/><path d="M4 13h16"/></svg></div>
+          <h3>Acessórios</h3>
+          <p>Mochilas e raqueteiras, cordas, grips, overgrips, antivibradores e bolas.</p>
+        </article>
+        <article class="svc rv">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6c3 3 3 9.8 0 12.8M18.4 5.6c-3 3-3 9.8 0 12.8"/></svg></div>
+          <h3>Aulas e torneios</h3>
+          <p>Professor de tênis há mais de 18 anos. Informações sobre aulas e torneios direto no WhatsApp.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block stringing" id="encordoamento">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="eyebrow">Encordoamento especializado</span>
+        <h2>A corda é metade da raquete.</h2>
+        <p class="lead">A mesma raquete muda completamente com outra corda ou outra tensão. Veja como a gente monta a sua.</p>
+      </div>
+      <div class="str-grid">
+        <div class="str-visual" id="strVisual">
+          <svg viewBox="-150 -180 300 520" aria-hidden="true">
+            <defs><clipPath id="strClip"><ellipse cx="0" cy="0" rx="103" ry="133"/></clipPath></defs>
+            <g clip-path="url(#strClip)">
+              <g id="mainsG"></g>
+              <g id="crossG"></g>
+            </g>
+            <ellipse class="str-frame" cx="0" cy="0" rx="110" ry="140"/>
+            <path d="M-38 133 L-10 230 M38 133 L10 230" stroke="var(--teal)" stroke-width="12" fill="none" stroke-linecap="round"/>
+            <rect x="-17" y="228" width="34" height="110" rx="8" fill="var(--graphite)"/>
+            <path d="M-17 246l34-12M-17 266l34-12M-17 286l34-12M-17 306l34-12M-17 326l34-12" stroke="var(--graphite-700)" stroke-width="5"/>
+          </svg>
+          <div class="badge"><b id="strBadge">Etapa 1</b><span id="strBadgeT">Avaliação do jogo</span></div>
+        </div>
+        <div class="steps">
+          <div class="step active" data-step="1">
+            <span class="num">ETAPA 1 DE 4</span>
+            <h3>Avaliação do jogo</h3>
+            <p>Antes de qualquer corda, uma conversa: nível, frequência de jogo, golpes que você mais usa e se sente dor no braço ou no cotovelo.</p>
+            <div class="chips"><span class="chip">Jogo de fundo</span><span class="chip">Saque e voleio</span><span class="chip">Muito spin</span><span class="chip">Cotovelo sensível</span><span class="chip">Juvenil</span></div>
+          </div>
+          <div class="step" data-step="2">
+            <span class="num">ETAPA 2 DE 4</span>
+            <h3>Escolha da corda</h3>
+            <p>Cada tipo de corda entrega uma sensação diferente. As verticais (mains) começam a ganhar forma.</p>
+            <ul>
+              <li><b>Poliéster</b><span>Controle e spin. Para quem bate forte do fundo.</span></li>
+              <li><b>Multifilamento</b><span>Conforto e potência. Gentil com braço e cotovelo.</span></li>
+              <li><b>Nylon</b><span>Equilíbrio e bom custo-benefício para quem está começando.</span></li>
+              <li><b>Híbrido</b><span>Poliéster nas verticais e multi nas horizontais: controle com conforto.</span></li>
+            </ul>
+          </div>
+          <div class="step" data-step="3">
+            <span class="num">ETAPA 3 DE 4</span>
+            <h3>Tensão na medida</h3>
+            <p>Tensão mais baixa dá mais potência e conforto. Mais alta dá mais controle. Arraste e veja o efeito.</p>
+            <div class="tension">
+              <div class="row">
+                <div class="val"><span id="lbs">52</span><small>lbs</small></div>
+                <div class="kg"><span id="kg">23,6</span> kg</div>
+              </div>
+              <label for="tensionRange" class="mono" style="font-size:.75rem;color:var(--muted)">TENSÃO (40 a 64 lbs)</label>
+              <input type="range" id="tensionRange" min="40" max="64" step="1" value="52">
+              <div class="meter"><div class="lbl"><span>Potência e conforto</span><span id="pPow">50%</span></div><div class="bar"><i id="mPow" style="width:50%"></i></div></div>
+              <div class="meter"><div class="lbl"><span>Controle</span><span id="pCtl">50%</span></div><div class="bar"><i id="mCtl" style="width:50%"></i></div></div>
+              <p class="note" id="tNote">Faixa equilibrada: boa saída de bola com controle. Ponto de partida comum para jogadores intermediários.</p>
+            </div>
+          </div>
+          <div class="step" data-step="4">
+            <span class="num">ETAPA 4 DE 4</span>
+            <h3>Montagem profissional</h3>
+            <p>Horizontais (crosses) entrelaçadas uma a uma, tensão conferida e nós firmes. Encordoador com formação profissional pelo curso ERSA.</p>
+            <a class="btn btn-teal mag" style="justify-self:start" href="https://wa.me/5511947106033?text=Ol%C3%A1%2C%20quero%20encordoar%20minha%20raquete" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Agendar encordoamento</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="showcase" id="vitrine">
+    <div class="sc-sticky">
+      <div class="wrap">
+        <div class="head rv" style="margin-bottom:30px">
+          <span class="eyebrow">Na parede da loja</span>
+          <h2>Uma raquete para cada jogo.</h2>
+        </div>
+      </div>
+      <div class="sc-track" id="scTrack"></div>
+      <div class="wrap">
+        <div class="sc-foot"><span class="mono" style="font-size:.78rem;color:var(--muted)">Estoque muda toda semana. Confirme modelo, peso e preço no WhatsApp.</span><div class="bar"><i id="scBar"></i></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="sobre">
+    <div class="wrap about-grid">
+      <div class="portrait rv">
+        <svg class="court" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true">
+          <g fill="none" stroke="rgba(238,243,242,.35)" stroke-width="2">
+            <rect x="40" y="30" width="320" height="440"/><path d="M80 30v440M320 30v440M80 140h240M80 360h240M200 140v220M40 250h320"/>
+          </g>
+        </svg>
+        <svg class="logo-float" aria-hidden="true"><use href="#mark"/></svg>
+        <div class="mono-big"><span>Professor · encordoador · lojista</span><strong>Fagner</strong></div>
+      </div>
+      <div class="rv">
+        <span class="eyebrow">Quem sou eu</span>
+        <h2 style="margin-top:14px">Quem vende sua raquete também joga.</h2>
+        <p class="lead" style="margin-top:18px">A loja nasceu dentro da quadra. Cada indicação vem de quem ensina, compete e encordoa todo dia.</p>
+        <div class="facts">
+          <div class="fact big"><b>18+</b><span>anos como professor de tênis, e 25 anos praticando o esporte</span></div>
+          <div class="fact"><b>1ª Classe</b><span>na Federação Paulista de Tênis</span></div>
+          <div class="fact"><b>Curso ERSA</b><span>encordoador de raquetes profissional</span></div>
+          <div class="fact"><b>Empreendedor</b><span>no ramo de venda de raquetes e acessórios</span></div>
+          <div class="fact"><b>Pai e marido</b><span>e corinthiano, com a loja no Parque São Jorge</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0" id="envio">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="eyebrow">Pedidos Brasil</span>
+        <h2>Mora longe? A raquete vai até você.</h2>
+      </div>
+      <div class="ship rv">
+        <div class="s"><svg viewBox="0 0 24 24"><use href="#wa"/></svg><span class="n">01 · Conversa</span><h3>Chame no WhatsApp</h3><p>Conte como você joga. A gente indica modelo, empunhadura e corda.</p></div>
+        <div class="s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 3v18M10 3v18M14 3v18M18 3v18M3 7h18M3 12h18M3 17h18"/></svg><span class="n">02 · Preparo</span><h3>Encordoada e conferida</h3><p>Sai da loja pronta para jogar, com a corda e a tensão combinadas.</p></div>
+        <div class="s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5v-9Z"/><path d="m3 7.5 9 4.5 9-4.5M12 12v9"/></svg><span class="n">03 · Envio</span><h3>Embalada e enviada</h3><p>Caixa protegida para qualquer canto do Brasil.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0" id="comunidade">
+    <div class="wrap">
+      <div class="head rv">
+        <span class="eyebrow">@fagner.raquetes</span>
+        <h2>Mais que loja, uma turma de tênis.</h2>
+        <p class="lead">No Instagram tem torneio, sorteio, patrocínio de atletas e o feedback de quem já comprou.</p>
+      </div>
+      <div class="community">
+        <a class="com rv" href="https://www.instagram.com/fagner.raquetes/" target="_blank" rel="noopener"><div class="ring"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4ZM7 6H4a3 3 0 0 0 3 3M17 6h3a3 3 0 0 1-3 3"/></svg></div></div><div><h3>Torneios</h3><p>Chaves, resultados e próximas datas.</p></div></a>
+        <a class="com rv" href="https://www.instagram.com/fagner.raquetes/" target="_blank" rel="noopener"><div class="ring"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8S10 3 7.5 4 8 8 12 8Zm0 0s2-5 4.5-4S16 8 12 8Z"/></svg></div></div><div><h3>Sorteios</h3><p>Raquetes e acessórios para quem acompanha.</p></div></a>
+        <a class="com rv" href="https://www.instagram.com/fagner.raquetes/" target="_blank" rel="noopener"><div class="ring"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg></div></div><div><h3>Patrocínio</h3><p>Atletas que jogam com a gente.</p></div></a>
+        <a class="com rv" href="https://www.instagram.com/fagner.raquetes/" target="_blank" rel="noopener"><div class="ring"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1.1-4.6A8 8 0 1 1 21 12Z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></div></div><div><h3>Feedback de clientes</h3><p>Quem comprou conta como foi.</p></div></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0" id="contato">
+    <div class="wrap">
+      <div class="contact rv">
+        <div style="position:relative;display:grid;gap:22px;align-content:start;min-width:0">
+          <span class="eyebrow" style="color:var(--graphite-900)">Visite a loja</span>
+          <h2>Venha testar o peso na mão.</h2>
+          <p class="lead">Passe na loja para ver as raquetes de perto, trazer a sua para encordoar ou negociar uma troca.</p>
+          <div class="hero-cta">
+            <a class="btn btn-dark mag" href="https://wa.me/5511947106033?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20raquetes%20e%20produtos%20de%20t%C3%AAnis" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Raquetes e produtos</a>
+            <a class="btn btn-line" href="https://wa.me/5511947106033?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20informa%C3%A7%C3%B5es%20sobre%20aulas%20e%20torneios" target="_blank" rel="noopener">Aulas e torneios</a>
+          </div>
+        </div>
+        <div class="cbox">
+          <div class="card-c">
+            <span class="k">WhatsApp</span>
+            <div class="r"><span class="v" id="phone">(11) 94710-6033</span><button class="copy" id="copyBtn" type="button">Copiar</button></div>
+          </div>
+          <div class="card-c">
+            <span class="k">Endereço</span>
+            <span class="v">Rua Antônio Macedo, 190</span>
+            <small>Parque São Jorge · São Paulo, SP</small>
+          </div>
+          <div class="card-c">
+            <span class="k">Instagram</span>
+            <div class="r"><a class="v" href="https://www.instagram.com/fagner.raquetes/" target="_blank" rel="noopener" style="text-decoration:none">@fagner.raquetes</a><svg width="22" height="22" style="color:var(--teal)"><use href="#ig"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap f">
+    <a class="brand" href="#inicio"><svg><use href="#mark"/></svg><div class="wm">fagner<span>raquetes</span></div></a>
+    <span>Venda de raquetes novas e seminovas, trocas, acessórios e encordoamento. Enviamos para todo o Brasil.</span>
+  </div>
+</footer>
+
+<script>
+(()=>{
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* progresso */
+const prog=document.getElementById('progress');
+function onScrollProg(){const h=document.documentElement.scrollHeight-innerHeight;prog.style.transform=`scaleX(${h>0?scrollY/h:0})`}
+addEventListener('scroll',onScrollProg,{passive:true});onScrollProg();
+
+/* ---------- raquete interativa (canvas) ---------- */
+const cv=document.getElementById('racket'),ctx=cv.getContext('2d');
+const RX=110,RY=140,MAINS=16,CROSSES=19;
+let W=0,H=0,dpr=1,angle=-.35,targetAngle=-.35,mouseTilt=0,ripples=[],balls=[],t0=performance.now(),inView=true;
+function resize(){const r=cv.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr}
+new ResizeObserver(resize).observe(cv);resize();
+function scale(){return Math.min(W,H)/600}
+function toLocal(mx,my){const s=scale(),dx=(mx-W/2)/s,dy=(my-H/2)/s,c=Math.cos(-angle),n=Math.sin(-angle);return{x:dx*c-dy*n,y:dx*n+dy*c+150}}
+function disp(x,y,now){let d=0;for(const r of ripples){const age=(now-r.t)/1000,dist=Math.hypot(x-r.x,y-r.y);const front=age*420;if(dist>front+30)continue;d+=r.a*Math.sin(dist*.09-age*26)*Math.exp(-age*2.6)*Math.exp(-dist/180)}return d}
+function draw(now){
+  ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);
+  const s=scale();
+  /* sombra */
+  ctx.save();ctx.translate(W/2+18,H/2+26);ctx.rotate(angle);ctx.scale(s,s);ctx.translate(0,-150);
+  ctx.fillStyle='rgba(0,0,0,.28)';ctx.filter='blur(14px)';ctx.beginPath();ctx.ellipse(0,0,RX+6,RY+6,0,0,Math.PI*2);ctx.fill();ctx.fillRect(-18,240,36,190);ctx.restore();ctx.filter='none';
+  ctx.save();ctx.translate(W/2,H/2);ctx.rotate(angle);ctx.scale(s,s);ctx.translate(0,-150);
+  /* cordas */
+  ctx.save();ctx.beginPath();ctx.ellipse(0,0,RX-6,RY-6,0,0,Math.PI*2);ctx.clip();
+  ctx.fillStyle='rgba(47,196,196,.07)';ctx.fillRect(-RX,-RY,RX*2,RY*2);
+  ctx.lineCap='round';
+  const seg=26;
+  for(let i=0;i<MAINS;i++){const x=-RX+((i+1)*(RX*2))/(MAINS+1);ctx.beginPath();for(let k=0;k<=seg;k++){const y=-RY+(k*2*RY)/seg;const d=disp(x,y,now);k?ctx.lineTo(x+d,y):ctx.moveTo(x+d,y)}const glow=Math.min(1,Math.abs(disp(x,0,now))/6);ctx.strokeStyle=`rgba(238,243,242,${.78+glow*.22})`;ctx.lineWidth=1.9;ctx.stroke()}
+  for(let j=0;j<CROSSES;j++){const y=-RY+((j+1)*(RY*2))/(CROSSES+1);ctx.beginPath();for(let k=0;k<=seg;k++){const x=-RX+(k*2*RX)/seg;const d=disp(x,y,now);k?ctx.lineTo(x,y+d):ctx.moveTo(x,y+d)}ctx.strokeStyle='rgba(238,243,242,.7)';ctx.lineWidth=1.7;ctx.stroke()}
+  ctx.restore();
+  /* aro */
+  const g=ctx.createLinearGradient(-RX,-RY,RX,RY);g.addColorStop(0,'#5fe0e0');g.addColorStop(.5,'#2fc4c4');g.addColorStop(1,'#0f9a9a');
+  ctx.beginPath();ctx.ellipse(0,0,RX,RY,0,0,Math.PI*2);ctx.strokeStyle=g;ctx.lineWidth=15;ctx.stroke();
+  ctx.beginPath();ctx.ellipse(0,0,RX+5,RY+5,0,0,Math.PI*2);ctx.strokeStyle='rgba(238,243,242,.35)';ctx.lineWidth=1.2;ctx.stroke();
+  /* garganta */
+  ctx.strokeStyle=g;ctx.lineWidth=13;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(-42,RY-8);ctx.quadraticCurveTo(-20,200,-12,245);ctx.moveTo(42,RY-8);ctx.quadraticCurveTo(20,200,12,245);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(-40,RY-4);ctx.quadraticCurveTo(0,RY+12,40,RY-4);ctx.lineWidth=7;ctx.stroke();
+  /* cabo */
+  ctx.fillStyle='#48485c';ctx.beginPath();ctx.roundRect(-19,242,38,170,9);ctx.fill();
+  ctx.save();ctx.beginPath();ctx.roundRect(-19,242,38,170,9);ctx.clip();ctx.strokeStyle='#33333f';ctx.lineWidth=7;for(let y=230;y<430;y+=17){ctx.beginPath();ctx.moveTo(-22,y+14);ctx.lineTo(22,y);ctx.stroke()}ctx.restore();
+  ctx.fillStyle='#2fc4c4';ctx.beginPath();ctx.roundRect(-21,404,42,16,6);ctx.fill();
+  ctx.restore();
+  /* bolas */
+  for(let i=balls.length-1;i>=0;i--){const b=balls[i],p=(now-b.t)/750;if(p>=1){balls.splice(i,1);continue}
+    const r=p<.18?8+p/.18*28:36*(1-(p-.18)/.82)+4,x=b.x+p*p*b.vx,y=b.y-Math.sin(p*Math.PI)*90*b.vy-p*60;
+    ctx.save();ctx.globalAlpha=1-p*.5;ctx.translate(x,y);ctx.rotate(p*6);
+    const bg=ctx.createRadialGradient(-r*.3,-r*.3,r*.1,0,0,r);bg.addColorStop(0,'#f4fb9a');bg.addColorStop(1,'#b9c62d');
+    ctx.fillStyle=bg;ctx.beginPath();ctx.arc(0,0,r,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,.85)';ctx.lineWidth=Math.max(1,r*.09);ctx.beginPath();ctx.arc(-r*1.15,0,r*.95,-.9,.9);ctx.stroke();ctx.beginPath();ctx.arc(r*1.15,0,r*.95,Math.PI-.9,Math.PI+.9);ctx.stroke();ctx.restore()}
+}
+function inHead(p){return (p.x*p.x)/(RX*RX)+(p.y*p.y)/(RY*RY)<1}
+function hit(mx,my,strong){const p=toLocal(mx,my);if(!inHead(p))return false;ripples.push({x:p.x,y:p.y,t:performance.now(),a:strong?11:3.2});if(ripples.length>14)ripples.shift();return true}
+let lastMove=0;
+cv.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top;mouseTilt=((mx/W)-.5)*.35;const now=performance.now();if(now-lastMove>90){if(hit(mx,my,false))lastMove=now}});
+cv.addEventListener('pointerleave',()=>mouseTilt=0);
+cv.addEventListener('pointerdown',e=>{const r=cv.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top;if(hit(mx,my,true)){balls.push({x:mx,y:my,t:performance.now(),vx:(Math.random()>.5?1:-1)*(120+Math.random()*120),vy:.6+Math.random()*.6})}});
+new IntersectionObserver(es=>{inView=es[0].isIntersecting},{threshold:0}).observe(cv);
+let idle=performance.now();
+function loop(now){
+  if(inView){
+    const sy=Math.min(scrollY,900);
+    targetAngle=-.35+sy*.0007+mouseTilt+(reduce?0:Math.sin((now-t0)/2600)*.04);
+    angle+=(targetAngle-angle)*.08;
+    if(!reduce&&now-idle>2600){idle=now;ripples.push({x:(Math.random()-.5)*RX,y:(Math.random()-.5)*RY,t:now,a:2.2})}
+    ripples=ripples.filter(r=>now-r.t<2200);
+    draw(now);
+  }
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+
+/* ---------- contadores ---------- */
+const counters=document.querySelectorAll('[data-count]');
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting||reduce)return;const el=e.target,end=+el.dataset.count,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'',st=performance.now();cio.unobserve(el);
+  (function tick(n){const p=Math.min(1,(n-st)/1300),v=Math.round(end*(1-Math.pow(1-p,3)));el.textContent=pre+v+suf;if(p<1)requestAnimationFrame(tick)})(st)}),{threshold:.6});
+counters.forEach(c=>cio.observe(c));
+
+/* ---------- brilho nos cards ---------- */
+document.querySelectorAll('.svc').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')}));
+
+/* ---------- botões magnéticos ---------- */
+if(!reduce&&matchMedia('(hover:hover)').matches){document.querySelectorAll('.mag').forEach(b=>{b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.18}px,${(e.clientY-r.top-r.height/2)*.3}px)`});b.addEventListener('pointerleave',()=>b.style.transform='')})}
+
+/* ---------- encordoamento por etapas ---------- */
+const svgNS='http://www.w3.org/2000/svg',mainsG=document.getElementById('mainsG'),crossG=document.getElementById('crossG');
+for(let i=0;i<16;i++){const x=-110+((i+1)*220)/17,l=document.createElementNS(svgNS,'line');l.setAttribute('x1',x);l.setAttribute('x2',x);l.setAttribute('y1',-140);l.setAttribute('y2',140);l.style.transitionDelay=(i*.04)+'s';mainsG.appendChild(l)}
+for(let j=0;j<19;j++){const y=-140+((j+1)*280)/20,l=document.createElementNS(svgNS,'line');l.setAttribute('x1',-110);l.setAttribute('x2',110);l.setAttribute('y1',y);l.setAttribute('y2',y);l.style.transitionDelay=(j*.04)+'s';crossG.appendChild(l)}
+const vis=document.getElementById('strVisual'),badge=document.getElementById('strBadge'),badgeT=document.getElementById('strBadgeT');
+const titles={1:'Avaliação do jogo',2:'16 verticais · escolha da corda',3:'19 horizontais · tensão',4:'Padrão 16×19 pronto'};
+function setStep(n){vis.classList.toggle('on-mains',n>=2);vis.classList.toggle('on-crosses',n>=3);vis.classList.toggle('on-done',n>=4);badge.textContent='Etapa '+n;badgeT.textContent=titles[n];document.querySelectorAll('.step').forEach(s=>s.classList.toggle('active',+s.dataset.step===n))}
+const sio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)setStep(+e.target.dataset.step)}),{rootMargin:'-45% 0px -45% 0px'});
+document.querySelectorAll('.step').forEach(s=>sio.observe(s));
+
+/* ---------- calculadora de tensão ---------- */
+const rng=document.getElementById('tensionRange'),lbsEl=document.getElementById('lbs'),kgEl=document.getElementById('kg'),note=document.getElementById('tNote');
+function upd(){const v=+rng.value,p=(v-40)/24;rng.style.setProperty('--p',(p*100)+'%');lbsEl.textContent=v;kgEl.textContent=(v*0.45359).toFixed(1).replace('.',',');
+  const pow=Math.round(90-p*70),ctl=Math.round(20+p*75);document.getElementById('mPow').style.width=pow+'%';document.getElementById('mCtl').style.width=ctl+'%';document.getElementById('pPow').textContent=pow+'%';document.getElementById('pCtl').textContent=ctl+'%';
+  note.textContent=v<=46?'Tensão baixa: mais saída de bola, mais conforto e sweet spot maior. Boa para braço sensível e para poliéster, que perde tensão mais rápido.':v<=56?'Faixa equilibrada: boa saída de bola com controle. Ponto de partida comum para jogadores intermediários.':'Tensão alta: mais controle e precisão, menos potência. Pede golpe completo e exige mais do braço.'}
+rng.addEventListener('input',upd);upd();
+
+/* ---------- vitrine ---------- */
+const models=[
+  {n:'Fúria',f:'#d8263a',a:'#8e1424',s:'#e8ef4e',tag:'Potência',d:'Aro vermelho com corda amarela. Cabeça grande e saída de bola fácil.'},
+  {n:'Topspin',f:'#1f6fd1',a:'#f2d600',s:'#eef3f2',tag:'Spin',d:'Azul e amarelo. Para quem gosta de bola pesada e muito efeito.'},
+  {n:'Neon',f:'#8ee82f',a:'#2c2c36',s:'#eef3f2',tag:'Leveza',d:'Verde neon. Leve e manobrável, ótima para juvenis e quem está evoluindo.'},
+  {n:'Clássica',f:'#f2f2f2',a:'#e03344',s:'#eef3f2',tag:'Controle',d:'Branca com detalhes vermelhos. Precisão para jogo de fundo.'},
+  {n:'Noturna',f:'#22222c',a:'#f0dc1e',s:'#e8ef4e',tag:'Versátil',d:'Preta e amarela. Equilíbrio entre potência e controle.'},
+  {n:'Laranja',f:'#ff7a1a',a:'#3a3a48',s:'#eef3f2',tag:'Conforto',d:'Aro flexível e confortável. Gentil com o cotovelo.'}
+];
+function racketSVG(m){let st='';for(let i=1;i<=10;i++){const x=-60+i*120/11;st+=`<line x1="${x}" y1="-80" x2="${x}" y2="80"/>`}for(let j=1;j<=12;j++){const y=-80+j*160/13;st+=`<line x1="-60" y1="${y}" x2="60" y2="${y}"/>`}
+  return `<svg viewBox="-80 -100 160 320" aria-hidden="true"><defs><clipPath id="c${m.n}"><ellipse rx="56" ry="74"/></clipPath></defs><g clip-path="url(#c${m.n})" stroke="${m.s}" stroke-width="1.4" opacity=".9">${st}</g><ellipse rx="60" ry="79" fill="none" stroke="${m.f}" stroke-width="9"/><path d="M-50 40 A60 79 0 0 0 50 40" fill="none" stroke="${m.a}" stroke-width="9" stroke-linecap="round"/><path d="M-22 74 L-6 132 M22 74 L6 132" stroke="${m.f}" stroke-width="7" stroke-linecap="round"/><rect x="-10" y="130" width="20" height="80" rx="5" fill="#33333f"/><path d="M-10 142l20-7M-10 154l20-7M-10 166l20-7M-10 178l20-7M-10 190l20-7" stroke="#26262f" stroke-width="3"/><rect x="-11" y="204" width="22" height="8" rx="3" fill="${m.a}"/></svg>`}
+const track=document.getElementById('scTrack');
+track.innerHTML=models.map(m=>`<article class="rk"><div class="art">${racketSVG(m)}</div><div class="meta"><h3>${m.n}</h3><span class="pill">${m.tag}</span></div><p>${m.d}</p></article>`).join('')+
+ `<a class="rk cta" href="https://wa.me/5511947106033?text=Ol%C3%A1%2C%20quero%20ver%20as%20raquetes%20dispon%C3%ADveis" target="_blank" rel="noopener"><h3>Ver o estoque de hoje</h3><p>Novas, seminovas e modelos para troca. Fotos e preços no WhatsApp.</p><span class="btn btn-dark" style="justify-self:start;background:var(--graphite-900);color:var(--string)"><svg><use href="#wa"/></svg>Pedir fotos</span></a>`;
+const sc=document.getElementById('vitrine'),sticky=sc.querySelector('.sc-sticky'),bar=document.getElementById('scBar');
+let dist=0;
+function layoutSC(){if(innerWidth<=760){sc.style.height='';track.style.transform='';return}dist=Math.max(0,track.scrollWidth-innerWidth);sc.style.height=(sticky.offsetHeight+dist)+'px';scrollSC()}
+function scrollSC(){if(innerWidth<=760){bar.style.width=(track.scrollLeft/Math.max(1,track.scrollWidth-track.clientWidth)*100)+'%';return}const r=sc.getBoundingClientRect(),top=parseFloat(getComputedStyle(sticky).top)||0,p=Math.min(1,Math.max(0,(top-r.top)/Math.max(1,dist)));track.style.transform=`translateX(${-p*dist}px)`;bar.style.width=(p*100)+'%'}
+addEventListener('scroll',scrollSC,{passive:true});track.addEventListener('scroll',scrollSC,{passive:true});addEventListener('resize',layoutSC);
+document.fonts&&document.fonts.ready.then(layoutSC);layoutSC();
+
+/* ---------- copiar telefone ---------- */
+const cb=document.getElementById('copyBtn');
+cb.addEventListener('click',()=>{const t='+55 11 94710-6033';const done=()=>{cb.textContent='Copiado';setTimeout(()=>cb.textContent='Copiar',1800)};
+  try{navigator.clipboard.writeText(t).then(done,()=>{selectPhone();cb.textContent='Selecionado'})}catch(e){selectPhone();cb.textContent='Selecionado'}});
+function selectPhone(){const r=document.createRange();r.selectNodeContents(document.getElementById('phone'));const s=getSelection();s.removeAllRanges();s.addRange(r)}
+})();
+</script>
+</body>
+</html>
